@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+import { defineConfig, fontProviders } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 
@@ -8,4 +8,24 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  fonts: [
+    {
+      provider: fontProviders.fontsource(),
+      name: "Barlow Condensed",
+      cssVariable: "--font-barlow-condensed",
+      weights: [700, 900],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Barlow",
+      cssVariable: "--font-barlow",
+      weights: [400, 500],
+    },
+    {
+      provider: fontProviders.fontsource(),
+      name: "Share Tech Mono",
+      cssVariable: "--font-share-tech-mono",
+      weights: [400],
+    },
+  ],
 });
