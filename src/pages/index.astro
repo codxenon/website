@@ -1,6 +1,13 @@
 ---
-import { Font } from "astro:assets";
+import { Font, Image } from "astro:assets";
 import "../styles/global.css";
+import customModels from "../assets/custom_models.jpeg";
+import mpUltimatePort from "../assets/mp_ultimate_port.jpeg";
+import mpBouncerPort from "../assets/mp_bouncer_training_port.jpeg";
+import mpMoRadiant from "../assets/mp_mo_test_iw3xo_radiant.png";
+import mpMoIngame from "../assets/mp_mo_test_ingame.jpeg";
+import mpCjmg2Radiant from "../assets/mp_cjmg2_iw3xo_radiant.png";
+import mpCjmg2Ingame from "../assets/mp_cjmg2_ingame.jpeg";
 ---
 
 <html lang="en">
@@ -24,7 +31,7 @@ import "../styles/global.css";
     <Font cssVariable="--font-share-tech-mono" />
   </head>
   <body
-    class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#080909] text-white"
+    class="relative flex min-h-screen flex-col items-center bg-[#080909] text-white"
   >
     <!-- Grid background -->
     <div class="grid-bg absolute inset-0 opacity-[0.035]"></div>
@@ -37,7 +44,7 @@ import "../styles/global.css";
     </div>
 
     <!-- Scanline overlay -->
-    <div class="scanlines pointer-events-none absolute inset-0 z-20"></div>
+    <div class="scanlines pointer-events-none fixed inset-0 z-20"></div>
 
     <main
       class="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center px-6 py-20 text-center"
@@ -68,14 +75,30 @@ import "../styles/global.css";
       </h1>
 
       <p
-        class="mb-14 max-w-lg font-sans text-base leading-relaxed text-zinc-400"
+        class="mb-6 max-w-lg font-sans text-base leading-relaxed text-zinc-400"
       >
-        Open-source, community-driven modding for Call of Duty on the Xbox 360 —
-        custom maps, custom models, and more.
+        Community-driven modding for Call of Duty on the Xbox 360 — pushing the
+        platform further than ever before. The possibilities are endless.
       </p>
 
+      <ul class="mb-14 w-full max-w-sm space-y-2 text-left">
+        {
+          [
+            "Build fully custom maps from scratch using Radiant",
+            "Port existing PC custom maps to Xbox 360",
+            "Import and use custom models in-game",
+            "And much more to come...",
+          ].map((item) => (
+            <li class="flex items-center gap-3 font-mono text-sm text-zinc-400">
+              <span class="text-green-500">›</span>
+              {item}
+            </li>
+          ))
+        }
+      </ul>
+
       <!-- CTA buttons -->
-      <div class="flex flex-col items-center gap-4 sm:flex-row">
+      <div class="mb-20 flex flex-col items-center gap-4 sm:flex-row">
         <a
           href="https://discord.com/invite/wCgjAMEQU5"
           target="_blank"
@@ -120,6 +143,105 @@ import "../styles/global.css";
             >GitHub</span
           >
         </a>
+      </div>
+
+      <!-- Preview section -->
+      <div class="w-full space-y-10">
+        <!-- Divider -->
+        <div class="flex items-center gap-4">
+          <div class="h-px flex-1 bg-zinc-800"></div>
+          <span
+            class="font-mono text-xs tracking-[0.25em] text-zinc-600 uppercase"
+            >Preview</span
+          >
+          <div class="h-px flex-1 bg-zinc-800"></div>
+        </div>
+
+        <!-- Radiant → In-Game -->
+        <div>
+          <p
+            class="mb-3 font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase"
+          >
+            Radiant → In-Game
+          </p>
+          <div class="space-y-3">
+            <div class="grid grid-cols-2 gap-3">
+              <div class="aspect-video overflow-hidden border border-zinc-800">
+                <Image
+                  src={mpMoRadiant}
+                  alt="mp_mo_test in Radiant"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div class="aspect-video overflow-hidden border border-zinc-800">
+                <Image
+                  src={mpMoIngame}
+                  alt="mp_mo_test in-game"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+              <div class="aspect-video overflow-hidden border border-zinc-800">
+                <Image
+                  src={mpCjmg2Radiant}
+                  alt="mp_cjmg2 in Radiant"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+              <div class="aspect-video overflow-hidden border border-zinc-800">
+                <Image
+                  src={mpCjmg2Ingame}
+                  alt="mp_cjmg2 in-game"
+                  class="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ported Maps -->
+        <div>
+          <p
+            class="mb-3 font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase"
+          >
+            Ported Maps
+          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="aspect-video overflow-hidden border border-zinc-800">
+              <Image
+                src={mpUltimatePort}
+                alt="mp_ultimate ported to Xbox 360"
+                class="h-full w-full object-cover"
+              />
+            </div>
+            <div class="aspect-video overflow-hidden border border-zinc-800">
+              <Image
+                src={mpBouncerPort}
+                alt="mp_bouncer_training ported to Xbox 360"
+                class="h-full w-full object-cover"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Custom Models -->
+        <div>
+          <p
+            class="mb-3 font-mono text-xs tracking-[0.2em] text-zinc-500 uppercase"
+          >
+            Custom Models
+          </p>
+          <div
+            class="aspect-video w-full overflow-hidden border border-zinc-800"
+          >
+            <Image
+              src={customModels}
+              alt="Custom models loaded in-game"
+              class="h-full w-full object-cover"
+            />
+          </div>
+        </div>
       </div>
     </main>
 
