@@ -1,0 +1,124 @@
+---
+title: "IW3 Bot Warfare"
+description: Install Bot Warfare for Call of Duty 4 on Xbox 360.
+---
+
+import { LinkButton, FileTree, Aside } from "@astrojs/starlight/components";
+
+Bot Warfare adds playable AI bots to Call of Duty 4 multiplayer.
+
+The original mod was created by [INeedGames](https://ineedbots.github.io). This Xbox 360 port runs through the codxe plugin.
+
+## What You Need
+
+- A **genuine** copy of Call of Duty 4: Modern Warfare
+- An Xbox 360 that can run unsigned code: **XDK**, **RGH**, **JTAG**, or **BadUpdate**
+- The game extracted to a normal folder
+- The latest Call of Duty 4 title update: **TU4**
+
+<Aside type="caution" title="Supported region">
+  Use the **USA / Europe** region of Call of Duty 4. Other regions are not
+  supported.
+</Aside>
+
+## Prepare The Game
+
+Extract Call of Duty 4 to a folder on your console storage.
+
+Do not use:
+
+- GOD / Games on Demand format
+- ISO format
+
+Your game folder should contain the normal game files, such as `default_mp.xex`.
+
+## Install codxe
+
+codxe is required. Bot Warfare will not load without it.
+
+### Xbox 360
+
+Download the plugin:
+
+<LinkButton
+  href="https://github.com/michaeloliverx/codxe/releases/latest/download/codxe.xex"
+  download
+  icon="download"
+>
+  Download **codxe**
+</LinkButton>
+
+Set `codxe.xex` as a [DashLaunch](https://consolemods.org/wiki/Xbox_360:DashLaunch) plugin.
+
+Your plugin setup should look similar to this:
+
+![dashlaunch](../../../assets/botwarfare/dashlaunch_plugins.webp)
+
+After saving your DashLaunch settings, reboot the console.
+
+## Install Bot Warfare
+
+Download the latest Bot Warfare release:
+
+<LinkButton
+  href="https://github.com/codxenon/iw3-bot-warfare-xenon/releases/download/v2.3.0-xenon/iw3bw-2.3.0-xenon.zip"
+  download
+  icon="download"
+>
+  Download **Bot Warfare**
+</LinkButton>
+
+Extract the contents of the `.zip` into your Call of Duty 4 game folder.
+
+When installed correctly, your folder should look like this:
+
+<FileTree>
+
+- `Call of Duty 4 - Modern Warfare`
+  - \_codxe
+    - codxe.json
+    - mods
+      - bot_warfare
+        - maps/
+        - scriptdata/
+        - scripts/
+  - default_mp.xex
+  - ...
+
+</FileTree>
+
+## Using Bot Warfare
+
+Start Call of Duty 4.
+
+If the mod loaded, you will see the `Active mod: bot_warfare` text in the top left:
+
+![Bot Warfare active mod](../../../assets/botwarfare/botwarfare_active_mod.webp)
+
+### In-Game Menu
+
+Load a System Link or private match game and follow the instructions to open the menu.
+
+![Bot Warfare ingame menu](../../../assets/botwarfare/botwarfare_ingame_menu.webp)
+
+<Aside type="caution" title="Xbox 360 bot limit">
+  Use **7 or 8 bots** for the best results. Higher bot counts **will cause lag**
+  on Xbox 360.
+</Aside>
+
+### Rename Bots
+
+Bot names are stored in `botnames.txt`.
+
+Open the file and add one bot name per line:
+
+<FileTree>
+
+- `Call of Duty 4 - Modern Warfare`
+  - \_codxe
+    - mods
+      - bot_warfare
+        - scriptdata
+          - **botnames.txt**
+
+</FileTree>
