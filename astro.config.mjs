@@ -11,7 +11,7 @@ export default defineConfig({
   }),
   integrations: [
     starlight({
-      title: "Cod Xenon",
+      title: "CoD Xenon",
       favicon: "/favicon.ico",
       customCss: [
         // Relative path to your custom CSS file
