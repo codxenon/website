@@ -1,0 +1,137 @@
+---
+title: CoD Xenon
+description: Open-source modding for Call of Duty on Xbox 360.
+template: splash
+hero:
+  tagline: Open-source modding for Call of Duty on Xbox 360
+  actions:
+    - text: Get Started
+      link: getting-started
+      icon: right-arrow
+    - text: GitHub
+      link: https://github.com/codxenon
+      icon: github
+      variant: secondary
+    - text: Discord
+      link: https://discord.com/invite/wCgjAMEQU5
+      icon: discord
+      variant: secondary
+---
+
+import { Card, CardGrid, Badge } from "@astrojs/starlight/components";
+import cjmg2Radiant from "../../assets/splash/mp_cjmg2_iw3xo_radiant.webp";
+import cjmg2InGame from "../../assets/splash/mp_cjmg2_ingame.webp";
+import moTestRadiant from "../../assets/splash/mp_mo_test_iw3xo_radiant.webp";
+import moTestInGame from "../../assets/splash/mp_mo_test_ingame.webp";
+import coastalInGame from "../../assets/splash/mp_coastal_ingame.webp";
+import nuketownInGame from "../../assets/splash/mp_4nuketown_ingame.webp";
+import gapTrainingInGame from "../../assets/splash/mp_gap_training.webp";
+import at4WeaponPort from "../../assets/splash/iw3_singleplayer_weapon_port_at4.webp";
+import menuMaplist from "../../assets/splash/iw3_menu_maplist.webp";
+import mikeMyersModel from "../../assets/splash/iw3_custom_model_mike_myers.webp";
+import sonicModel from "../../assets/splash/iw3_custom_model_sonic.webp";
+
+<CardGrid stagger>
+  <Card title="Custom maps" icon="pencil">
+    Build real custom maps using the official CoD4 Radiant or
+    [iw3xo-radiant](https://github.com/xoxor4d/iw3xo-radiant).
+  </Card>
+  <Card title="Map ports" icon="rocket">
+    Convert existing PC custom maps and run them on Xbox 360.
+  </Card>
+  <Card title="Menus" icon="list-format">
+    Build fully custom menus or edit existing ones.
+  </Card>
+  <Card title="Weapon ports" icon="random">
+    Bring single-player weapons into multiplayer.
+  </Card>
+  <Card title="Custom models" icon="puzzle">
+    Import custom character and prop models for use in-game.
+  </Card>
+  <Card title="Bot Warfare" icon="comment-alt">
+    Run Bot Warfare offline or in private match.
+  </Card>
+</CardGrid>
+
+## Preview
+
+### Radiant to In-Game
+
+<div class="map-comparisons">
+  <div class="map-comparison">
+    <figure>
+      <img src={cjmg2Radiant.src} alt="mp_cjmg2 open in Radiant" />
+      <figcaption>Radiant</figcaption>
+    </figure>
+    <span aria-hidden="true">&rarr;</span>
+    <figure>
+      <img src={cjmg2InGame.src} alt="mp_cjmg2 running in-game" />
+      <figcaption>In-game</figcaption>
+    </figure>
+  </div>
+
+  <div class="map-comparison">
+    <figure>
+      <img src={moTestRadiant.src} alt="mp_mo_test open in Radiant" />
+      <figcaption>Radiant</figcaption>
+    </figure>
+    <span aria-hidden="true">&rarr;</span>
+    <figure>
+      <img src={moTestInGame.src} alt="mp_mo_test running in-game" />
+      <figcaption>In-game</figcaption>
+    </figure>
+  </div>
+</div>
+
+### Ported PC Maps
+
+<div class="ported-maps">
+  <figure>
+    <code>mp_coastal</code>
+    <img src={coastalInGame.src} alt="mp_coastal running in-game" />
+  </figure>
+  <figure>
+    <code>mp_4nuketown</code>
+    <img src={nuketownInGame.src} alt="mp_4nuketown running in-game" />
+  </figure>
+  <figure>
+    <code>mp_gap_training</code>
+    <img src={gapTrainingInGame.src} alt="mp_gap_training running in-game" />
+  </figure>
+</div>
+
+### Weapon Ports
+
+<div class="single-example">
+  <figure>
+    <code>AT4</code>
+    <img
+      src={at4WeaponPort.src}
+      alt="AT4 single-player weapon ported to multiplayer"
+    />
+  </figure>
+</div>
+
+### Menu Edits
+
+<div class="single-example">
+  <figure>
+    <img
+      src={menuMaplist.src}
+      alt="Extended map list achieved by editing an existing menu"
+    />
+  </figure>
+</div>
+
+### Custom Models
+
+<div class="ported-maps">
+  <figure>
+    <code>Mike Myers</code>
+    <img src={mikeMyersModel.src} alt="Mike Myers custom model in-game" />
+  </figure>
+  <figure>
+    <code>Sonic</code>
+    <img src={sonicModel.src} alt="Sonic custom model in-game" />
+  </figure>
+</div>
