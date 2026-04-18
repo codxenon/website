@@ -20,6 +20,10 @@ export default defineConfig({
       head: [
         {
           tag: "meta",
+          attrs: { property: "og:site_name", content: "CoD Xenon" },
+        },
+        {
+          tag: "meta",
           attrs: {
             property: "og:image",
             content: "https://codxenon.dev/og-image.png",
@@ -32,6 +36,10 @@ export default defineConfig({
         {
           tag: "meta",
           attrs: { property: "og:image:height", content: "630" },
+        },
+        {
+          tag: "meta",
+          attrs: { property: "og:image:type", content: "image/png" },
         },
       ],
       social: [
