@@ -1,20 +1,22 @@
 ---
 title: "IW3 Bot Warfare"
-description: Install Bot Warfare for Call of Duty 4 on Xbox 360.
+description: Install Bot Warfare for Call of Duty 4 on Xbox 360 or Xenia.
 ---
 
 import { LinkButton, FileTree, Aside } from "@astrojs/starlight/components";
 
 Bot Warfare adds playable AI bots to Call of Duty 4 multiplayer.
 
-The original mod was created by [INeedGames](https://ineedbots.github.io). This Xbox 360 port runs through the codxe plugin.
+The original mod was created by [INeedGames](https://ineedbots.github.io). This port runs through the codxe plugin.
 
 ## What You Need
 
 - A **genuine** copy of Call of Duty 4: Modern Warfare
-- An Xbox 360 that can run unsigned code: **XDK**, **RGH**, **JTAG**, or **BadUpdate**
 - The game extracted to a normal folder
 - The latest Call of Duty 4 title update: **TU4**
+- One of these setups:
+  - An Xbox 360 that can run unsigned code: **XDK**, **RGH**, **JTAG**, or **BadUpdate**
+  - **Xenia Canary Netplay** on Windows
 
 <Aside type="caution" title="Supported region">
   Use the **USA / Europe** region of Call of Duty 4. Other regions are not
@@ -23,7 +25,7 @@ The original mod was created by [INeedGames](https://ineedbots.github.io). This 
 
 ## Prepare The Game
 
-Extract Call of Duty 4 to a folder on your console storage.
+Extract Call of Duty 4 to a normal folder.
 
 Do not use:
 
@@ -32,11 +34,9 @@ Do not use:
 
 Your game folder should contain the normal game files, such as `default_mp.xex`.
 
-## Install codxe
+## Install codxe on Xbox 360
 
 codxe is required. Bot Warfare will not load without it.
-
-### Xbox 360
 
 Download the plugin:
 
@@ -55,6 +55,107 @@ Your plugin setup should look similar to this:
 ![dashlaunch](../../../assets/botwarfare/dashlaunch_plugins.webp)
 
 After saving your DashLaunch settings, reboot the console.
+
+## Install codxe on Xenia
+
+codxe is required. Bot Warfare will not load without it.
+
+Use this path when running Bot Warfare through Xenia instead of Xbox 360 hardware.
+
+Download Xenia Canary Netplay:
+
+<LinkButton
+  href="https://github.com/AdrianCassar/xenia-canary/releases/latest"
+  icon="download"
+>
+  Download **Xenia Canary Netplay**
+</LinkButton>
+
+### Enable Plugins
+
+Xenia does not load plugins by default so it must be enabled via the config.
+
+The config file appears beside the Xenia executable after Xenia has been opened once:
+
+<FileTree>
+
+- `Xenia Canary Netplay`
+  - xenia_canary_netplay.exe
+  - **xenia-canary-netplay.config.toml**
+
+</FileTree>
+
+Open the config file and change:
+
+```diff lang="toml"
+- allow_plugins = false
++ allow_plugins = true
+```
+
+<Aside type="caution" title="Close Xenia before editing">
+  Close Xenia before changing the config file. If you edit the config while
+  Xenia is open, the change will **not save**.
+</Aside>
+
+### Copy Files
+
+Download the latest codxe release `.zip`. Do not use the standalone
+`codxe.xex` download for Xenia. The `.zip` contains additional Xenia files that
+Xbox 360 hardware users do not need.
+
+<LinkButton
+  href="https://github.com/michaeloliverx/codxe/releases/latest"
+  icon="download"
+>
+  Download **codxe release zip**
+</LinkButton>
+
+After extracting the codxe `.zip`, the folder should look similar to this:
+
+<FileTree>
+
+- codxe
+  - iw3
+    - TU_10LC1V6_0000004000000.0000000000101
+  - xenia
+    - patches/
+    - plugins/
+  - ...
+
+</FileTree>
+
+Copy the contents of the codxe `xenia` folder into the same folder as
+`xenia_canary_netplay.exe`.
+
+When copied correctly, your Xenia folder should look similar to this:
+
+<FileTree>
+
+- `Xenia Canary Netplay`
+  - patches/
+  - plugins/
+  - xenia_canary_netplay.exe
+  - xenia-canary-netplay.config.toml
+
+</FileTree>
+
+### Install TU4
+
+In Xenia, press `File` > `Install Content...`.
+
+Navigate to the TU4 file inside the extracted codxe folder:
+
+<FileTree>
+
+- codxe
+  - iw3
+    - **TU_10LC1V6_0000004000000.0000000000101**
+    - ...
+  - ...
+
+</FileTree>
+
+After TU4 is installed, boot `default_mp.xex` for multiplayer.
 
 ## Install Bot Warfare
 
@@ -95,16 +196,24 @@ If the mod loaded, you will see the `Active mod: bot_warfare` text in the top le
 
 ![Bot Warfare active mod](../../../assets/botwarfare/botwarfare_active_mod.webp)
 
-### In-Game Menu
-
-Load a System Link or private match game and follow the instructions to open the menu.
-
-![Bot Warfare ingame menu](../../../assets/botwarfare/botwarfare_ingame_menu.webp)
+### Bot Limits
 
 <Aside type="caution" title="Xbox 360 bot limit">
   Use **7 or 8 bots** for the best results. Higher bot counts **will cause lag**
   on Xbox 360.
 </Aside>
+
+<Aside type="note" title="Xenia bot limit">
+  Xenia can handle higher bot counts than Xbox 360, depending on the map and
+  your PC. Some maps can run up to **23 bots**, but start lower and increase the
+  count if performance stays stable.
+</Aside>
+
+### In-Game Menu
+
+Load a System Link or private match game and follow the instructions to open the menu.
+
+![Bot Warfare ingame menu](../../../assets/botwarfare/botwarfare_ingame_menu.webp)
 
 ### Rename Bots
 
@@ -120,5 +229,6 @@ Open the file and add one bot name per line:
       - bot_warfare
         - scriptdata
           - **botnames.txt**
+  - ...
 
 </FileTree>
