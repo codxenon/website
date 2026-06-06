@@ -1,0 +1,135 @@
+---
+title: "T4 Bot Warfare"
+description: "Install Bot Warfare for Call of Duty: World at War on Xbox 360 or Xenia."
+---
+
+import { LinkButton, FileTree, Aside } from "@astrojs/starlight/components";
+
+Bot Warfare adds playable AI bots to Call of Duty: World at War multiplayer.
+
+The original mod was created by [INeedGames](https://ineedbots.github.io). This guide uses CoD Xe to run it on Xbox 360 or Xenia.
+
+## What You Need
+
+- A **genuine** copy of Call of Duty: World at War
+- The game extracted to a normal folder
+- The latest Call of Duty: World at War title update: **TU7**
+- One of these setups:
+  - An Xbox 360 that can run unsigned code: **XDK**, **RGH**, **JTAG**, or **BadUpdate**
+  - **Xenia Canary Netplay** on Windows
+
+<Aside type="caution" title="Supported region">
+  Use the **USA / Europe** region of Call of Duty: World at War. Other regions
+  are not supported.
+</Aside>
+
+<Aside type="danger" title="Xenia stability">
+  Call of Duty: World at War is very unstable in Xenia. Crashes are expected and
+  effectively guaranteed; it is only a matter of when they happen.
+</Aside>
+
+## Prepare The Game
+
+Extract Call of Duty: World at War to a normal folder.
+
+Do not use:
+
+- GOD / Games on Demand format
+- ISO format
+
+Your game folder should contain the normal game files, such as `default_mp.xex`.
+
+## Install CoD Xe
+
+CoD Xe is required. Bot Warfare will not load without it.
+
+Install CoD Xe first, then return to this guide:
+
+<LinkButton href="/guides/cod-xe/" icon="right-arrow">
+  Install **CoD Xe**
+</LinkButton>
+
+## Install TU7
+
+Call of Duty: World at War must be running **TU7**.
+
+On Xbox 360, install and enable TU7 through your normal title update workflow.
+
+In Xenia, press `File` > `Install Content...`, then install the T4 TU7 file from
+the extracted CoD Xe release:
+
+<FileTree>
+
+- codxe
+  - t4
+    - Title Updates/
+      - TU7/
+        - **TU_10LC20S_0000010000000.00000000001O8**
+    - ...
+  - ...
+
+</FileTree>
+
+After TU7 is installed, boot `default_mp.xex` for multiplayer.
+
+## Install Bot Warfare
+
+Download the latest T4 Bot Warfare release:
+
+<LinkButton
+  href="https://github.com/codxenon/t4-bot-warfare-xenon/releases/download/v2.3.0-xenon/t4bw-2.3.0-xenon.zip"
+  download
+  icon="download"
+>
+  Download **T4 Bot Warfare**
+</LinkButton>
+
+Extract the contents of the `.zip` into your Call of Duty: World at War game
+folder.
+
+When installed correctly, your folder should look like this:
+
+<FileTree>
+
+- `Call of Duty - World at War`
+  - \_codxe
+    - codxe.json
+    - mods
+      - bot_warfare
+        - maps/
+        - scriptdata/
+        - scripts/
+  - default_mp.xex
+  - ...
+
+</FileTree>
+
+## Using Bot Warfare
+
+Start Call of Duty: World at War multiplayer.
+
+If the mod loaded, you will see the `Active mod: bot_warfare` text in the top left:
+
+![Bot Warfare active mod](../../../../assets/t4_botwarfare/t4_botwarfare_active_mod.webp)
+
+Load a System Link or private match game, then open the Bot Warfare menu by
+pressing the primary grenade and secondary grenade buttons together.
+
+### Bot Limits
+
+<Aside type="caution" title="Xbox 360 bot limit">
+  Use **7 or 8 bots** for the best results. Higher bot counts can cause lag on
+  Xbox 360.
+</Aside>
+
+<Aside type="note" title="Xenia bot limit">
+  Xenia can handle higher bot counts than Xbox 360, depending on the map and
+  your PC. Start lower and increase the count if performance stays stable.
+</Aside>
+
+### In-Game Menu
+
+Use the in-game menu to add bots, change bot difficulty, and adjust bot
+settings.
+
+![Bot Warfare ingame menu](../../../../assets/t4_botwarfare/t4_botwarfare_ingame_menu.webp)

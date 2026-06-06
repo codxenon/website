@@ -6,6 +6,9 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   site: "https://codxenon.dev",
+  redirects: {
+    "/guides/iw3-bot-warfare/": "/guides/iw3/bot-warfare/",
+  },
   adapter: cloudflare({
     imageService: "compile",
   }),
@@ -61,7 +64,17 @@ export default defineConfig({
         },
         {
           label: "Guides",
-          autogenerate: { directory: "guides" },
+          items: [
+            "guides/codxe",
+            {
+              label: "IW3",
+              items: ["guides/iw3/bot-warfare"],
+            },
+            {
+              label: "T4",
+              items: ["guides/t4/bot-warfare"],
+            },
+          ],
         },
       ],
     }),
