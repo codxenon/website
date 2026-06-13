@@ -7,7 +7,14 @@ import { LinkButton, FileTree, Aside } from "@astrojs/starlight/components";
 
 Bot Warfare adds playable AI bots to Call of Duty: World at War multiplayer.
 
-The original mod was created by [INeedGames](https://ineedbots.github.io). This guide uses CoD Xe to run it on Xbox 360 or Xenia.
+The original mod was created by [INeedGames](https://ineedbots.github.io). This port runs through the CoD Xe plugin.
+
+<LinkButton
+  href="https://github.com/codxenon/t4-bot-warfare-xenon"
+  icon="github"
+>
+  View **T4 Bot Warfare Xenon port** on GitHub
+</LinkButton>
 
 ## What You Need
 
@@ -53,24 +60,33 @@ Install CoD Xe first, then return to this guide:
 
 Call of Duty: World at War must be running **TU7**.
 
-On Xbox 360, install and enable TU7 through your normal title update workflow.
+Download the TU7 file:
 
-In Xenia, press `File` > `Install Content...`, then install the T4 TU7 file from
-the extracted CoD Xe release:
+<LinkButton
+  href="https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20World%20at%20War%20%28USA%2C%20Europe%29/TU7/TU_10LC20S_0000010000000.00000000001O8"
+  download
+  icon="download"
+>
+  Download **World at War TU7**
+</LinkButton>
 
-<FileTree>
+### Xbox 360
 
-- codxe
-  - t4
-    - `Title Updates/`
-      - TU7/
-        - **TU_10LC20S_0000010000000.00000000001O8**
-    - ...
-  - ...
+Copy the downloaded TU7 file to `Hdd1/Cache/`:
 
-</FileTree>
+```text
+Hdd1/Cache/TU_10LC20S_0000010000000.00000000001O8
+```
 
-After TU7 is installed, boot `default_mp.xex` for multiplayer.
+### Xenia
+
+Press `File` > `Install Content...`, then select the downloaded TU7 file:
+
+```text
+TU_10LC20S_0000010000000.00000000001O8
+```
+
+After TU7 is installed, continue to the Bot Warfare install.
 
 ## Install Bot Warfare
 
@@ -108,7 +124,7 @@ When installed correctly, your folder should look like this:
 
 Start Call of Duty: World at War multiplayer.
 
-If the mod loaded, you will see the `Active mod: bot_warfare` text in the top left:
+If the mod loaded, you will see the `Mod: bot_warfare` text in the top left:
 
 ![Bot Warfare active mod](../../../../assets/t4_botwarfare/t4_botwarfare_active_mod.webp)
 
