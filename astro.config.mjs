@@ -71,6 +71,10 @@ export default defineConfig({
               items: ["guides/iw3/bot-warfare"],
             },
             {
+              label: "IW4",
+              items: ["guides/iw4/bot-warfare"],
+            },
+            {
               label: "T4",
               items: ["guides/t4/bot-warfare"],
             },

@@ -9,6 +9,13 @@ Bot Warfare adds playable AI bots to Call of Duty 4 multiplayer.
 
 The original mod was created by [INeedGames](https://ineedbots.github.io). This port runs through the CoD Xe plugin.
 
+<LinkButton
+  href="https://github.com/codxenon/iw3-bot-warfare-xenon"
+  icon="github"
+>
+  View **IW3 Bot Warfare Xenon port** on GitHub
+</LinkButton>
+
 ## What You Need
 
 - A **genuine** copy of Call of Duty 4: Modern Warfare
@@ -48,24 +55,33 @@ Install CoD Xe first, then return to this guide:
 
 Call of Duty 4 must be running **TU4**.
 
-On Xbox 360, install and enable TU4 through your normal title update workflow.
+Download the TU4 file:
 
-In Xenia, press `File` > `Install Content...`, then install the IW3 TU4 file
-from the extracted CoD Xe release:
+<LinkButton
+  href="https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%204%20-%20Modern%20Warfare%20%28USA%2C%20Europe%29/TU4/TU_10LC1V6_0000004000000.0000000000101"
+  download
+  icon="download"
+>
+  Download **Call of Duty 4 TU4**
+</LinkButton>
 
-<FileTree>
+### Xbox 360
 
-- codxe
-  - iw3
-    - `Title Updates/`
-      - TU4/
-        - **TU_10LC1V6_0000004000000.0000000000101**
-    - ...
-  - ...
+Copy the downloaded TU4 file to `Hdd1/Cache/`:
 
-</FileTree>
+```text
+Hdd1/Cache/TU_10LC1V6_0000004000000.0000000000101
+```
 
-After TU4 is installed, boot `default_mp.xex` for multiplayer.
+### Xenia
+
+Press `File` > `Install Content...`, then select the downloaded TU4 file:
+
+```text
+TU_10LC1V6_0000004000000.0000000000101
+```
+
+After TU4 is installed, continue to the Bot Warfare install.
 
 ## Install Bot Warfare
 
@@ -102,7 +118,7 @@ When installed correctly, your folder should look like this:
 
 Start Call of Duty 4.
 
-If the mod loaded, you will see the `Active mod: bot_warfare` text in the top left:
+If the mod loaded, you will see the `Mod: bot_warfare` text in the top left:
 
 ![Bot Warfare active mod](../../../../assets/botwarfare/botwarfare_active_mod.webp)
 
