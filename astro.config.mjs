@@ -67,16 +67,16 @@ export default defineConfig({
           items: [
             "guides/codxe",
             {
-              label: "IW3",
-              items: ["guides/iw3/bot-warfare"],
+              label: "Call of Duty 4 (IW3)",
+              items: [{ label: "Bot Warfare", slug: "guides/iw3/bot-warfare" }],
             },
             {
-              label: "IW4",
-              items: ["guides/iw4/bot-warfare"],
+              label: "Modern Warfare 2 (IW4)",
+              items: [{ label: "Bot Warfare", slug: "guides/iw4/bot-warfare" }],
             },
             {
-              label: "T4",
-              items: ["guides/t4/bot-warfare"],
+              label: "World at War (T4)",
+              items: [{ label: "Bot Warfare", slug: "guides/t4/bot-warfare" }],
             },
           ],
         },
