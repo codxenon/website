@@ -72,7 +72,10 @@ export default defineConfig({
             },
             {
               label: "Modern Warfare 2 (IW4)",
-              items: [{ label: "Bot Warfare", slug: "guides/iw4/bot-warfare" }],
+              items: [
+                { label: "Fastfiles", slug: "guides/iw4/fastfiles" },
+                { label: "Bot Warfare", slug: "guides/iw4/bot-warfare" },
+              ],
             },
             {
               label: "World at War (T4)",
