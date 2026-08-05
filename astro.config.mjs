@@ -56,6 +56,11 @@ export default defineConfig({
           label: "Discord",
           href: "https://discord.com/invite/wCgjAMEQU5",
         },
+        {
+          icon: "heart",
+          label: "Ko-fi",
+          href: "https://ko-fi.com/michaeloliverx",
+        },
       ],
       sidebar: [
         {
