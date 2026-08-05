@@ -1,0 +1,48 @@
+---
+title: Supported Games
+description: Xbox 360 games currently supported by CoD Xe.
+---
+
+import InlineDownload from "../../../components/inline-download.astro";
+
+export const titleUpdateDownloads = {
+  iw2Tu3:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%202%20%28USA%2C%20Europe%29/TU3/TU_10LC1UH_0000000000000.0000000000181",
+  iw3Tu4:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%204%20-%20Modern%20Warfare%20%28USA%2C%20Europe%29/TU4/TU_10LC1V6_0000004000000.0000000000101",
+  qosTu2:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/007%20-%20Quantum%20of%20Solace%20%28USA%2C%20Europe%29%20%28En%2CFr%29/TU2/TU_10LC1VV_000000S000000.00000000000G7",
+  t4Tu7:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20World%20at%20War%20%28USA%2C%20Europe%29/TU7/TU_10LC20S_0000010000000.00000000001O8",
+  iw4Tu6:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20Modern%20Warfare%202%20%28USA%2C%20Europe%29/TU6/TU_10LC20N_0000018000000.00000000001GA",
+  iw4Tu9:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20Modern%20Warfare%202%20%28USA%2C%20Europe%29/TU9/TU_10LC20N_0000018000000.000000000028A",
+  t5Tu11:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20Black%20Ops%20%28USA%2C%20Europe%29/TU11/tu00000003_00000000",
+  iw5Tu24:
+    "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20Modern%20Warfare%203%20%28USA%20Europe%29/TU24/tu00000002_00000000",
+};
+
+CoD Xe provides mod support and game-specific features for the following Xbox
+360 titles and versions.
+
+The Media IDs and title updates below are for the USA / Europe releases. The
+listed 007: Quantum of Solace release includes English and French.
+
+| Game                                 | Title ID   | Media ID                                    | Title Update                                                                                                                          |
+| ------------------------------------ | ---------- | ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Call of Duty 2 (IW2)                 | `415607D1` | [`7FD5641C`](http://redump.org/disc/13281/) | <InlineDownload href={titleUpdateDownloads.iw2Tu3} label="TU3" />                                                                     |
+| Call of Duty 4: Modern Warfare (IW3) | `415607E6` | [`2C8C0267`](http://redump.org/disc/12660/) | <InlineDownload href={titleUpdateDownloads.iw3Tu4} label="TU4" />                                                                     |
+| 007: Quantum of Solace               | `415607FF` | [`06DD88A0`](http://redump.org/disc/12335/) | <InlineDownload href={titleUpdateDownloads.qosTu2} label="TU2" />                                                                     |
+| Call of Duty: World at War (T4)      | `4156081C` | [`17723718`](http://redump.org/disc/11816/) | <InlineDownload href={titleUpdateDownloads.t4Tu7} label="TU7" />                                                                      |
+| Call of Duty: Modern Warfare 2       | `41560817` | [`2C8C0267`](http://redump.org/disc/11809/) | <InlineDownload href={titleUpdateDownloads.iw4Tu6} label="TU6" /> - <InlineDownload href={titleUpdateDownloads.iw4Tu9} label="TU9" /> |
+| Call of Duty: Black Ops (T5)         | `41560855` | [`0AEB2159`](http://redump.org/disc/16718/) | <InlineDownload href={titleUpdateDownloads.t5Tu11} label="TU11" />                                                                    |
+| Call of Duty: Modern Warfare 3 (IW5) | `415608CB` | [`30775D59`](http://redump.org/disc/37074/) | <InlineDownload href={titleUpdateDownloads.iw5Tu24} label="TU24" />                                                                   |
+
+## Published Game Guides
+
+- [Call of Duty 4 Bot Warfare](/guides/iw3/bot-warfare/)
+- [Modern Warfare 2 Bot Warfare](/guides/iw4/bot-warfare/)
+- [Modern Warfare 2 Fastfiles](/guides/iw4/fastfiles/)
+- [World at War Bot Warfare](/guides/t4/bot-warfare/)

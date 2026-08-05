@@ -3,7 +3,13 @@ title: "Modern Warfare 2 Bot Warfare"
 description: Install Bot Warfare for Modern Warfare 2 on Xbox 360 or Xenia.
 ---
 
-import { LinkButton, FileTree, Aside } from "@astrojs/starlight/components";
+import {
+  Aside,
+  CardGrid,
+  FileTree,
+  LinkButton,
+  LinkCard,
+} from "@astrojs/starlight/components";
 
 Bot Warfare adds playable AI bots to Call of Duty: Modern Warfare 2 multiplayer.
 
@@ -52,50 +58,29 @@ CoD Xe is required. Bot Warfare will not load without it.
 
 Install CoD Xe first, then return to this guide:
 
-<LinkButton href="/guides/codxe/" icon="right-arrow">
-  Install **CoD Xe**
-</LinkButton>
+<CardGrid>
+  <LinkCard
+    title="Xbox 360"
+    href="/guides/codxe/xbox-360/"
+    description="Install CoD Xe on an Xbox 360."
+  />
+  <LinkCard
+    title="Xenia"
+    href="/guides/codxe/xenia/"
+    description="Install CoD Xe on Xenia Canary."
+  />
+</CardGrid>
 
-## Install TU6
+## Install Title Update
 
-Call of Duty: Modern Warfare 2 must be running **TU6**.
+Modern Warfare 2 must be running **TU6**. Install the compatible title update,
+then return to this guide:
 
-<Aside type="caution" title="Remove TU9 first">
-  If the **TU9** file, the latest Modern Warfare 2 update, is still installed,
-  Xbox 360 or Xenia will prefer TU9 over TU6. Delete TU9 before installing TU6.
-
-On Xbox 360, the TU9 file is stored at
-`Hdd1/Cache/TU_10LC20N_0000018000000.000000000028A`.
-
-</Aside>
-
-Download the TU6 file:
-
-<LinkButton
-  href="https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20Modern%20Warfare%202%20%28USA%2C%20Europe%29/TU6/TU_10LC20N_0000018000000.00000000001GA"
-  download
-  icon="download"
->
-  Download **Modern Warfare 2 TU6**
-</LinkButton>
-
-### Xbox 360
-
-Copy the downloaded TU6 file to `Hdd1/Cache/`:
-
-```text
-Hdd1/Cache/TU_10LC20N_0000018000000.00000000001GA
-```
-
-### Xenia
-
-Press `File` > `Install Content...`, then select the downloaded TU6 file:
-
-```text
-TU_10LC20N_0000018000000.00000000001GA
-```
-
-After TU6 is installed, continue to the Bot Warfare install.
+<LinkCard
+  title="Install Modern Warfare 2 TU6"
+  href="/reference/supported-games/"
+  description="Download TU6 and follow the installation guide for your platform."
+/>
 
 ## Install Bot Warfare
 

@@ -3,7 +3,13 @@ title: "World at War Bot Warfare"
 description: "Install Bot Warfare for Call of Duty: World at War on Xbox 360 or Xenia."
 ---
 
-import { LinkButton, FileTree, Aside } from "@astrojs/starlight/components";
+import {
+  Aside,
+  CardGrid,
+  FileTree,
+  LinkButton,
+  LinkCard,
+} from "@astrojs/starlight/components";
 
 Bot Warfare adds playable AI bots to Call of Duty: World at War multiplayer.
 
@@ -52,41 +58,29 @@ CoD Xe is required. Bot Warfare will not load without it.
 
 Install CoD Xe first, then return to this guide:
 
-<LinkButton href="/guides/codxe/" icon="right-arrow">
-  Install **CoD Xe**
-</LinkButton>
+<CardGrid>
+  <LinkCard
+    title="Xbox 360"
+    href="/guides/codxe/xbox-360/"
+    description="Install CoD Xe on an Xbox 360."
+  />
+  <LinkCard
+    title="Xenia"
+    href="/guides/codxe/xenia/"
+    description="Install CoD Xe on Xenia Canary."
+  />
+</CardGrid>
 
-## Install TU7
+## Install Title Update
 
-Call of Duty: World at War must be running **TU7**.
+World at War must be running **TU7**. Install the compatible title update, then
+return to this guide:
 
-Download the TU7 file:
-
-<LinkButton
-  href="https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20World%20at%20War%20%28USA%2C%20Europe%29/TU7/TU_10LC20S_0000010000000.00000000001O8"
-  download
-  icon="download"
->
-  Download **World at War TU7**
-</LinkButton>
-
-### Xbox 360
-
-Copy the downloaded TU7 file to `Hdd1/Cache/`:
-
-```text
-Hdd1/Cache/TU_10LC20S_0000010000000.00000000001O8
-```
-
-### Xenia
-
-Press `File` > `Install Content...`, then select the downloaded TU7 file:
-
-```text
-TU_10LC20S_0000010000000.00000000001O8
-```
-
-After TU7 is installed, continue to the Bot Warfare install.
+<LinkCard
+  title="Install World at War TU7"
+  href="/reference/supported-games/"
+  description="Download TU7 and follow the installation guide for your platform."
+/>
 
 ## Install Bot Warfare
 

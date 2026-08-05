@@ -1,0 +1,77 @@
+---
+title: "Install CoD Xe on Xenia"
+description: Install the CoD Xe plugin with Xenia Canary or Xenia Canary Netplay on Windows.
+---
+
+import {
+  Aside,
+  FileTree,
+  LinkButton,
+  LinkCard,
+} from "@astrojs/starlight/components";
+
+Use this guide when running CoD Xe through Xenia instead of Xbox 360 hardware.
+
+## What You Need
+
+- **Xenia Canary** or **Xenia Canary Netplay** installed and updated on Windows
+- A supported game extracted to a normal folder
+
+<LinkCard
+  title="Install Xenia"
+  href="/guides/xenia/install/"
+  description="Choose a Xenia version and update Netplay to the latest nightly build."
+/>
+
+<Aside type="caution" title="Use game-specific title updates">
+  CoD Xe requires the correct title update for each game. Install the title
+  update listed in the game guide you are following.
+</Aside>
+
+## Copy Files
+
+Download the latest CoD Xe release `.zip`. Do not use the standalone
+`codxe.xex` download for Xenia. The `.zip` contains additional Xenia files that
+Xbox 360 hardware users do not need.
+
+<LinkButton
+  href="https://github.com/michaeloliverx/codxe/releases/latest"
+  icon="download"
+>
+  Download **CoD Xe release zip**
+</LinkButton>
+
+After extracting the CoD Xe `.zip`, the folder should look similar to this:
+
+<FileTree>
+
+- codxe
+  - iw3/
+  - iw4/
+  - t4/
+  - xenia
+    - patches/
+    - plugins/
+  - ...
+
+</FileTree>
+
+Copy the contents of the extracted `codxe` folder's `xenia` folder into the
+same folder as your Xenia executable.
+
+When copied correctly, your Xenia folder should look similar to this:
+
+<FileTree>
+
+- Xenia
+  - patches/
+  - plugins/
+  - xenia_canary.exe or xenia_canary_netplay.exe
+  - xenia-canary-config.toml or xenia-canary-netplay.config.toml
+
+</FileTree>
+
+## Next Step
+
+Return to the game or mod guide you were following, then start the game's
+multiplayer `.xex`.

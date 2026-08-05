@@ -1,9 +1,12 @@
 ---
 title: Getting Started
-description: CoD Xenon is still being built.
+description: Set up CoD Xe on Xbox 360 or Xenia and start using game-specific mods.
 ---
 
-import { Aside } from "@astrojs/starlight/components";
+import { Aside, CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+CoD Xe adds mod support and community-made experiences to supported Xbox 360
+games. It runs on modified Xbox 360 hardware and through Xenia on Windows.
 
 <Aside type="caution" title="IMPORTANT">
 
@@ -12,4 +15,41 @@ import { Aside } from "@astrojs/starlight/components";
 
 </Aside>
 
-<Aside>We are still working on building the tools, docs, and examples.</Aside>
+## Setup Overview
+
+1. Check that your game and Media ID are supported.
+2. Prepare a clean copy of your game files.
+3. Follow the setup path for Xbox 360 or Xenia.
+4. Install the title update required by your game or mod.
+5. Install CoD Xe.
+6. Continue with a game-specific guide.
+
+## Before You Begin
+
+<CardGrid>
+  <LinkCard
+    title="Supported Games"
+    href="/reference/supported-games/"
+    description="Check supported games, Media IDs, and required title updates."
+  />
+  <LinkCard
+    title="Prepare Game Files"
+    href="/guides/prepare-game-files/"
+    description="Prepare a clean, legally obtained copy of your game."
+  />
+</CardGrid>
+
+## Choose Your Platform
+
+<CardGrid>
+  <LinkCard
+    title="Xbox 360"
+    href="/guides/title-updates/xbox-360/"
+    description="Install the required title update, then install CoD Xe on your console."
+  />
+  <LinkCard
+    title="Xenia"
+    href="/guides/xenia/install/"
+    description="Install and configure Xenia before adding title updates and CoD Xe."
+  />
+</CardGrid>

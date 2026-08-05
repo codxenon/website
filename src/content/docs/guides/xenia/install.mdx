@@ -1,0 +1,140 @@
+---
+title: Install Xenia
+description: Install and configure Xenia Canary or Xenia Canary Netplay for CoD Xe.
+---
+
+import {
+  Aside,
+  FileTree,
+  LinkButton,
+  LinkCard,
+} from "@astrojs/starlight/components";
+
+CoD Xe runs on both [Xenia Canary](https://github.com/xenia-canary/xenia-canary)
+and [**Xenia Canary Netplay**](https://github.com/AdrianCassar/xenia-canary) on
+Windows.
+
+<Aside type="note" title="Use Netplay for networking">
+  Xenia Canary Netplay is required for networking features such as System Link.
+  Without it, multiplayer is limited to four-player local split-screen, which
+  also limits larger bot matches.
+</Aside>
+
+## Download Xenia
+
+Download the latest stable release of your chosen version and extract it to a
+dedicated folder.
+
+<LinkButton
+  href="https://github.com/xenia-canary/xenia-canary/releases/latest"
+  icon="download"
+  variant="secondary"
+>
+  Download **Xenia Canary**
+</LinkButton>
+
+<LinkButton
+  href="https://github.com/AdrianCassar/xenia-canary/releases/latest"
+  icon="download"
+>
+  Download **Xenia Canary Netplay**
+</LinkButton>
+
+Do not run Xenia from inside the downloaded `.zip`. After extraction, the
+folder should contain the executable for your chosen version.
+
+<FileTree>
+
+- `Xenia Canary`
+  - xenia_canary.exe
+- `Xenia Canary Netplay`
+  - xenia_canary_netplay.exe
+
+</FileTree>
+
+Open Xenia once, then close it. Xenia creates its config and content files
+beside the executable.
+
+## Update Netplay To The Latest Nightly
+
+Some fixes needed by CoD Xe games may be newer than the latest stable release.
+Xenia Canary Netplay can install the latest nightly build from its updater.
+
+<Aside type="caution" title="Development builds are experimental">
+  Nightly builds contain the newest fixes, but they may also introduce new
+  problems. Keep the stable release `.zip` so you can restore it if necessary.
+</Aside>
+
+1. Open Xenia Canary Netplay.
+2. Select `Netplay` > `Update Checker` from the menu bar.
+
+{/* TODO: Add screenshot of the Netplay menu with Update Checker selected. */}
+
+3. Turn off the **Stable** switch, then select **Check for Nightly Updates**.
+4. Select **Download** when an update is available, then restart Xenia.
+
+{/* TODO: Add screenshot of the updater set to Nightly with Download available. */}
+
+## Configure Xenia For CoD Xe
+
+Close Xenia, then open the config file beside its executable:
+
+- Xenia Canary: `xenia-canary-config.toml`
+- Xenia Canary Netplay: `xenia-canary-netplay.config.toml`
+
+Change these values:
+
+```diff lang="toml"
+- allow_plugins = false
++ allow_plugins = true
+
+- allow_game_relative_writes = false
++ allow_game_relative_writes = true
+
+- keyboard_mode = 0
++ keyboard_mode = 2
+```
+
+- `allow_plugins = true` allows Xenia to load CoD Xe from the `plugins` folder.
+- `allow_game_relative_writes = true` allows game-relative writes used by CoD Xe
+  and installed mods.
+- `keyboard_mode = 2` enables keyboard passthrough for the CoD Xe in-game
+  console.
+
+<Aside type="caution" title="Close Xenia before editing">
+  Xenia writes its configuration when it closes and may overwrite changes made
+  while it is running.
+</Aside>
+
+## Configure Upscaling
+
+Upscaling is optional. Set both resolution scale values to the same number:
+
+```toml
+draw_resolution_scale_x = 2
+draw_resolution_scale_y = 2
+```
+
+| Target              | X scale | Y scale |
+| ------------------- | ------- | ------- |
+| Original rendering  | `1`     | `1`     |
+| Approximately 1440p | `2`     | `2`     |
+| Approximately 4K    | `3`     | `3`     |
+
+Start at `2`. If the game becomes slow, stutters, or displays broken effects,
+restore both values to `1`.
+
+<Aside type="note" title="Resolution scaling is experimental">
+  Some effects can render incorrectly above the default `1x` scale even when
+  your GPU is fast enough.
+</Aside>
+
+## Next Step
+
+Install the title update required by the game guide you are following:
+
+<LinkCard
+  title="Install a title update on Xenia"
+  href="/guides/title-updates/xenia/"
+  description="Choose the compatible update and install it in Xenia."
+/>

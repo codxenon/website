@@ -15,6 +15,9 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "CoD Xenon",
+      editLink: {
+        baseUrl: "https://github.com/codxenon/website/edit/main",
+      },
       favicon: "/favicon.ico",
       customCss: [
         // Relative path to your custom CSS file
@@ -65,12 +68,37 @@ export default defineConfig({
       sidebar: [
         {
           label: "Start Here",
-          items: ["getting-started"],
+          items: [
+            "getting-started",
+            { slug: "guides/prepare-game-files" },
+            {
+              label: "Xbox 360",
+              collapsed: true,
+              items: [
+                {
+                  label: "Install Title Updates",
+                  slug: "guides/title-updates/xbox-360",
+                },
+                { label: "Install CoD Xe", slug: "guides/codxe/xbox-360" },
+              ],
+            },
+            {
+              label: "Xenia",
+              collapsed: true,
+              items: [
+                { label: "Install Xenia", slug: "guides/xenia/install" },
+                {
+                  label: "Install Title Updates",
+                  slug: "guides/title-updates/xenia",
+                },
+                { label: "Install CoD Xe", slug: "guides/codxe/xenia" },
+              ],
+            },
+          ],
         },
         {
-          label: "Guides",
+          label: "Game Guides",
           items: [
-            "guides/codxe",
             {
               label: "Call of Duty 4 (IW3)",
               items: [{ label: "Bot Warfare", slug: "guides/iw3/bot-warfare" }],
@@ -78,14 +106,21 @@ export default defineConfig({
             {
               label: "Modern Warfare 2 (IW4)",
               items: [
-                { label: "Fastfiles", slug: "guides/iw4/fastfiles" },
                 { label: "Bot Warfare", slug: "guides/iw4/bot-warfare" },
+                { label: "Fastfiles", slug: "guides/iw4/fastfiles" },
               ],
             },
             {
               label: "World at War (T4)",
               items: [{ label: "Bot Warfare", slug: "guides/t4/bot-warfare" }],
             },
+          ],
+        },
+        {
+          label: "Reference",
+          items: [
+            { slug: "reference/supported-games" },
+            { slug: "reference/credits" },
           ],
         },
       ],

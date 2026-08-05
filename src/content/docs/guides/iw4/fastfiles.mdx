@@ -3,7 +3,13 @@ title: "CoD Xe IW4 Fastfiles"
 description: Install additional maps, weapons, and game modes for Modern Warfare 2 on Xbox 360 or Xenia.
 ---
 
-import { Aside, FileTree, LinkButton } from "@astrojs/starlight/components";
+import {
+  Aside,
+  CardGrid,
+  FileTree,
+  LinkButton,
+  LinkCard,
+} from "@astrojs/starlight/components";
 
 The CoD Xe IW4 Fastfiles pack expands Call of Duty: Modern Warfare 2
 multiplayer with additional maps, weapons, and game modes.
@@ -72,33 +78,29 @@ multiplayer with additional maps, weapons, and game modes.
 
 Install CoD Xe before continuing:
 
-<LinkButton href="/guides/codxe/" icon="right-arrow">
-  Install **CoD Xe**
-</LinkButton>
+<CardGrid>
+  <LinkCard
+    title="Xbox 360"
+    href="/guides/codxe/xbox-360/"
+    description="Install CoD Xe on an Xbox 360."
+  />
+  <LinkCard
+    title="Xenia"
+    href="/guides/codxe/xenia/"
+    description="Install CoD Xe on Xenia Canary."
+  />
+</CardGrid>
 
-## Install TU6
+## Install Title Update
 
-This prerelease requires Modern Warfare 2 **TU6**.
+This prerelease requires Modern Warfare 2 **TU6**. Install the compatible title
+update, then return to this guide:
 
-<Aside type="caution" title="Remove TU9 first">
-  If the **TU9** file is installed, Xbox 360 or Xenia will prefer it over TU6.
-  Delete TU9 before installing TU6.
-
-On Xbox 360, the TU9 file is stored at
-`Hdd1/Cache/TU_10LC20N_0000018000000.000000000028A`.
-
-</Aside>
-
-<LinkButton
-  href="https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20Modern%20Warfare%202%20%28USA%2C%20Europe%29/TU6/TU_10LC20N_0000018000000.00000000001GA"
-  download
-  icon="download"
->
-  Download **Modern Warfare 2 TU6**
-</LinkButton>
-
-On Xbox 360, copy the TU6 file to `Hdd1/Cache/`. On Xenia, select `File` >
-`Install Content...` and choose the downloaded TU6 file.
+<LinkCard
+  title="Install Modern Warfare 2 TU6"
+  href="/reference/supported-games/"
+  description="Download TU6 and follow the installation guide for your platform."
+/>
 
 ## Install The Fastfiles
 

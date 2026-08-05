@@ -1,0 +1,51 @@
+---
+title: "Install CoD Xe on Xbox 360"
+description: Install the CoD Xe plugin on Xbox 360 hardware.
+---
+
+import { Aside, LinkButton, LinkCard } from "@astrojs/starlight/components";
+
+Use this guide for an Xbox 360 that can run unsigned code. An **XDK**,
+**RGH**, **JTAG**, or **BadUpdate**.
+
+## What You Need
+
+- An Xbox 360 that can run unsigned code
+- A supported game extracted to a normal folder
+
+<Aside type="caution" title="Use game-specific title updates">
+  CoD Xe requires the correct title update for each game. Install the title
+  update listed in the game guide you are following.
+</Aside>
+
+## Download CoD Xe
+
+Download the standalone plugin:
+
+<LinkButton
+  href="https://github.com/michaeloliverx/codxe/releases/latest/download/codxe.xex"
+  download
+  icon="download"
+>
+  Download **CoD Xe**
+</LinkButton>
+
+## Configure DashLaunch
+
+Set `codxe.xex` as a [DashLaunch](https://consolemods.org/wiki/Xbox_360:DashLaunch) plugin.
+
+Your plugin setup could look similar to this:
+
+![dashlaunch](../../../../assets/botwarfare/dashlaunch_plugins.webp)
+
+After saving your DashLaunch settings, reboot the console.
+
+## Next Step
+
+Install the title update required by the game guide you are following:
+
+<LinkCard
+  title="Install a title update on Xbox 360"
+  href="/guides/title-updates/xbox-360/"
+  description="Choose the compatible update and install it on your console."
+/>

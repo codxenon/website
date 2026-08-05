@@ -1,0 +1,63 @@
+---
+title: "Install Title Updates on Xbox 360"
+description: Install a CoD Xe-compatible title update on Xbox 360 hardware.
+---
+
+import { Aside, LinkCard } from "@astrojs/starlight/components";
+
+Download the update required by your game before continuing:
+
+<LinkCard
+  title="Supported games and title updates"
+  href="/reference/supported-games/"
+  description="Choose and download the title update required by your game."
+/>
+
+<Aside type="caution" title="Remove Modern Warfare 2 TU9 for TU6 mods">
+  CoD Xe supports Modern Warfare 2 TU9, but the current IW4 Bot Warfare and
+  Fastfiles guides require **TU6**. If you are following one of those guides,
+  delete this TU9 file before installing TU6:
+
+`Hdd1/Cache/TU_10LC20N_0000018000000.000000000028A`
+
+</Aside>
+
+## Copy The Title Update
+
+Do not rename the downloaded title update file. Its filename determines where
+it must be installed. The uppercase and lowercase placement rules are
+documented in the
+[ConsoleMods Xbox 360 Title Updates guide](https://consolemods.org/wiki/Xbox_360:Title_Updates).
+
+### Uppercase TU Files
+
+Copy files beginning with uppercase `TU_` to `Hdd1:\Cache`:
+
+```text
+Hdd1:\Cache\TU_10LC1V6_0000004000000.0000000000101
+```
+
+This format is used by IW2, IW3, QoS, T4, and both IW4 title updates.
+
+### Lowercase tu Files
+
+Copy files beginning with lowercase `tu` to the game's title update content
+folder. Use the Title ID from the compatibility table:
+
+```text
+Hdd1:\Content\0000000000000000\<Title ID>\000B0000\<title update file>
+```
+
+For example, Black Ops TU11 belongs at:
+
+```text
+Hdd1:\Content\0000000000000000\41560855\000B0000\tu00000003_00000000
+```
+
+This format is used by T5 and IW5.
+
+After copying the file, reboot the console before starting the game.
+
+## Next Step
+
+Return to the game or mod guide you were following.

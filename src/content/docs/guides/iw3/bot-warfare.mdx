@@ -3,7 +3,13 @@ title: "Call of Duty 4 Bot Warfare"
 description: Install Bot Warfare for Call of Duty 4 on Xbox 360 or Xenia.
 ---
 
-import { LinkButton, FileTree, Aside } from "@astrojs/starlight/components";
+import {
+  Aside,
+  CardGrid,
+  FileTree,
+  LinkButton,
+  LinkCard,
+} from "@astrojs/starlight/components";
 
 Bot Warfare adds playable AI bots to Call of Duty 4 multiplayer.
 
@@ -47,41 +53,29 @@ CoD Xe is required. Bot Warfare will not load without it.
 
 Install CoD Xe first, then return to this guide:
 
-<LinkButton href="/guides/codxe/" icon="right-arrow">
-  Install **CoD Xe**
-</LinkButton>
+<CardGrid>
+  <LinkCard
+    title="Xbox 360"
+    href="/guides/codxe/xbox-360/"
+    description="Install CoD Xe on an Xbox 360."
+  />
+  <LinkCard
+    title="Xenia"
+    href="/guides/codxe/xenia/"
+    description="Install CoD Xe on Xenia Canary."
+  />
+</CardGrid>
 
-## Install TU4
+## Install Title Update
 
-Call of Duty 4 must be running **TU4**.
+Call of Duty 4 must be running **TU4**. Install the compatible title update,
+then return to this guide:
 
-Download the TU4 file:
-
-<LinkButton
-  href="https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%204%20-%20Modern%20Warfare%20%28USA%2C%20Europe%29/TU4/TU_10LC1V6_0000004000000.0000000000101"
-  download
-  icon="download"
->
-  Download **Call of Duty 4 TU4**
-</LinkButton>
-
-### Xbox 360
-
-Copy the downloaded TU4 file to `Hdd1/Cache/`:
-
-```text
-Hdd1/Cache/TU_10LC1V6_0000004000000.0000000000101
-```
-
-### Xenia
-
-Press `File` > `Install Content...`, then select the downloaded TU4 file:
-
-```text
-TU_10LC1V6_0000004000000.0000000000101
-```
-
-After TU4 is installed, continue to the Bot Warfare install.
+<LinkCard
+  title="Install Call of Duty 4 TU4"
+  href="/reference/supported-games/"
+  description="Download TU4 and follow the installation guide for your platform."
+/>
 
 ## Install Bot Warfare
 

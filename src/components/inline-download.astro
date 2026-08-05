@@ -1,0 +1,61 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { Icon } from "@astrojs/starlight/components";
+
+interface Props extends Omit<HTMLAttributes<"a">, "href"> {
+  href: string | URL;
+  label: string;
+}
+
+const {
+  href,
+  label,
+  class: className,
+  title = `Download ${label}`,
+  ...attrs
+} = Astro.props;
+---
+
+<a
+  href={href}
+  class:list={["inline-download not-content", className]}
+  aria-label={`Download ${label}`}
+  title={title}
+  {...attrs}
+>
+  <Icon name="download" size="0.875rem" />
+  <span>{label}</span>
+</a>
+
+<style>
+  @layer starlight.components {
+    .inline-download {
+      align-items: center;
+      background: transparent;
+      border: 1px solid var(--sl-color-gray-5);
+      border-radius: 0.25rem;
+      color: var(--sl-color-white);
+      display: inline-flex;
+      font-size: var(--sl-text-xs);
+      font-weight: 600;
+      gap: 0.25rem;
+      line-height: 1;
+      min-height: 1.5rem;
+      outline-offset: 0.125rem;
+      padding: 0.2rem 0.4rem;
+      text-decoration: none;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .inline-download:hover {
+      background: var(--sl-color-gray-6);
+      border-color: var(--sl-color-text-accent);
+      color: var(--sl-color-text-accent);
+    }
+
+    .inline-download:active {
+      background: var(--sl-color-gray-5);
+    }
+  }
+</style>

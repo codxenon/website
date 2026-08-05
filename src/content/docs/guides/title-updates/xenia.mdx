@@ -1,0 +1,43 @@
+---
+title: "Install Title Updates on Xenia"
+description: Install a CoD Xe-compatible title update with Xenia Canary or Xenia Canary Netplay.
+---
+
+import { Aside, LinkCard } from "@astrojs/starlight/components";
+
+Download the update required by your game before continuing:
+
+<LinkCard
+  title="Supported games and title updates"
+  href="/reference/supported-games/"
+  description="Choose and download the title update required by your game."
+/>
+
+<Aside type="caution" title="Remove Modern Warfare 2 TU9 for TU6 mods">
+  CoD Xe supports Modern Warfare 2 TU9, but the current IW4 Bot Warfare and
+  Fastfiles guides require **TU6**. If you are following one of those guides,
+  close Xenia and delete this TU9 file from Xenia's `content` folder before
+  installing TU6:
+
+`TU_10LC20N_0000018000000.000000000028A`
+
+</Aside>
+
+## Install The Title Update
+
+1. Open Xenia Canary or Xenia Canary Netplay.
+2. Select `File` > `Install Content...`.
+3. Select the downloaded `TU_...` file.
+4. Wait for Xenia to confirm that the content was installed.
+
+Xenia stores installed content in the `content` folder beside its executable.
+
+## Next Step
+
+Install the CoD Xe plugin files:
+
+<LinkCard
+  title="Install CoD Xe on Xenia"
+  href="/guides/codxe/xenia/"
+  description="Copy the CoD Xe patches and plugins into your Xenia folder."
+/>
