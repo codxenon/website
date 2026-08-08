@@ -111,6 +111,10 @@ export default defineConfig({
               ],
             },
             {
+              label: "Modern Warfare 3 (IW5)",
+              items: [{ label: "Bot Warfare", slug: "guides/iw5/bot-warfare" }],
+            },
+            {
               label: "World at War (T4)",
               items: [{ label: "Bot Warfare", slug: "guides/t4/bot-warfare" }],
             },
