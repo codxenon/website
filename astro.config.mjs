@@ -94,6 +94,7 @@ export default defineConfig({
                 { label: "Install CoD Xe", slug: "guides/codxe/xenia" },
               ],
             },
+            "get-help",
           ],
         },
         {
