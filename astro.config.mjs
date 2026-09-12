@@ -102,7 +102,13 @@ export default defineConfig({
           items: [
             {
               label: "Call of Duty 4 (IW3)",
-              items: [{ label: "Bot Warfare", slug: "guides/iw3/bot-warfare" }],
+              items: [
+                { label: "Bot Warfare", slug: "guides/iw3/bot-warfare" },
+                {
+                  label: "Custom Maps & Fastfiles",
+                  slug: "guides/iw3/fastfiles",
+                },
+              ],
             },
             {
               label: "Modern Warfare 2 (IW4)",
