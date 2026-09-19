@@ -123,7 +123,13 @@ export default defineConfig({
             },
             {
               label: "World at War (T4)",
-              items: [{ label: "Bot Warfare", slug: "guides/t4/bot-warfare" }],
+              items: [
+                { label: "Bot Warfare", slug: "guides/t4/bot-warfare" },
+                {
+                  label: "Custom Zombie Maps & Fastfiles",
+                  slug: "guides/t4/fastfiles",
+                },
+              ],
             },
           ],
         },
