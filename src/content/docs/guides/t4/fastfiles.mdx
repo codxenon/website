@@ -1,6 +1,6 @@
 ---
 title: "World at War Custom Zombie Maps"
-description: Install six custom zombie maps for World at War on Xbox 360 or Xenia.
+description: Install custom zombie maps for World at War on Xbox 360 or Xenia.
 head:
   - tag: meta
     attrs:
@@ -46,22 +46,29 @@ import {
 
 import CodXeUpdateNotice from "../../../../components/CodXeUpdateNotice.astro";
 
-This package contains the CoD Xe fastfiles needed to play six custom zombie
-maps in Call of Duty: World at War.
+This package contains the CoD Xe fastfiles needed to play custom zombie maps in
+Call of Duty: World at War.
 
 <CodXeUpdateNotice />
 
 ![A custom zombie map running in World at War through CoD Xe](/og/t4-fastfiles-zombie-maps.webp)
 
 <Aside type="caution" title="Public prerelease">
-  Version **0.1.0** is an early public release. You may encounter visual issues,
+  Version **0.2.0** is an early public release. You may encounter visual issues,
   gameplay issues, performance drops, or crashes.
 </Aside>
 
+## What's New in v0.2.0
+
+- More maps
+- Loading screens
+- A Field of View slider in **Start** > **Options**.
+
 ## Known Issues
 
-- Some map sounds are currently missing.
-- The custom maps do not currently have loading screens.
+- Missing sounds
+- Low quality textures
+- Pack-a-Punch on certain weapons on certain maps can crash the game
 
 :::note[Map credits]
 All credit and respect goes to the original creators of the included custom
@@ -70,12 +77,21 @@ zombie maps.
 
 ## Included Custom Zombie Maps
 
-- **Mario** (`mario`)
+All listed maps have been tested in local Split Screen and on Xbox 360 hardware.
+
+- **Super Mario 64** (`mario`)
 - **Aztec** (`nazi_zombie_aztec`)
-- **Cheese Cube** (`nazi_zombie_ccube_u`)
-- **Halloween** (`nazi_zombie_halloween`)
+- **Cheese Cube Unlimited** (`nazi_zombie_ccube_u`)
+- **DerBerg** (`nazi_zombie_derberg`)
+- **Five Nights at Freddy's** (`nazi_zombie_fivenights`)
+- **Halloween Town** (`nazi_zombie_halloween`)
 - **Hijacked** (`nazi_zombie_hijacked`)
-- **SpongeBob** (`spongebob`)
+- **Leviathan** (`nazi_zombie_leviathan`)
+- **McDonald's** (`nazi_zombie_mcdonalds`)
+- **Doll House 2** (`nazi_zombie_sc_dh2`)
+- **Spongebob** (`spongebob`)
+- **Terminus** (`zm_terminus`)
+- **BO2 Town Expanded** (`zm_tranzit`)
 
 ## What You Need
 
@@ -111,20 +127,27 @@ Prepare a clean game folder and install CoD Xe before continuing:
 ## Download and Install
 
 <LinkButton
-  href="https://downloads.codxenon.dev/codxe-t4-fastfiles-v0.1.0.zip"
+  href="https://downloads.codxenon.dev/codxe-t4-fastfiles-v0.2.0.zip"
   download
   icon="download"
 >
-  Download **CoD Xe T4 Fastfiles v0.1.0**
+  Download **CoD Xe T4 Fastfiles v0.2.0**
 </LinkButton>
 
 0. Update to the latest CoD Xe plugin.
 1. Extract the `.zip`.
-2. Open the extracted `codxe-t4-fastfiles-v0.1.0` folder.
+2. Open the extracted `codxe-t4-fastfiles-v0.2.0` folder.
 3. Copy its `_codxe` folder into your World at War game folder and allow it to
    merge with your existing `_codxe` folder.
 
-Do **not** delete or replace your existing `_codxe` folder.
+:::note[New layout with legacy support]
+This release uses the new `_codxe/t4` layout. The previous `_codxe/zone` and
+`_codxe/usermaps` layout is still accepted for compatibility with existing
+installs.
+:::
+
+This release is self-contained. You can delete your existing `_codxe` folder
+before copying the one from the archive.
 
 When installed correctly, the relevant files should look like this:
 
@@ -132,24 +155,27 @@ When installed correctly, the relevant files should look like this:
 
 - `Call of Duty - World at War`
   - \_codxe
-    - zone
-      - **patch.ff**
-      - **patch_ui.ff**
-    - usermaps
-      - mario
-        - mario.ff
-      - nazi_zombie_aztec
-        - nazi_zombie_aztec.ff
-      - nazi_zombie_ccube_u
-        - nazi_zombie_ccube_u.ff
-      - ...
+    - t4
+      - zone/
+      - usermaps
+        - mario/
+        - nazi_zombie_aztec/
+        - nazi_zombie_ccube_u/
+        - ...
+  - default.xex
   - default_mp.xex
-  - ...
 
 </FileTree>
 
+## Field of View
+
+Open **Start** > **Options**, then select **Field of View** to adjust the
+slider.
+
+![Field of View slider in World at War](../../../../assets/t4_fastfiles/field-of-view-slider.webp)
+
 ## Split Screen
 
-All six included maps support local Split Screen.
+All listed maps support local Split Screen.
 
 ![Two players using Split Screen on the Mario custom zombie map](../../../../assets/t4_fastfiles/splitscreen-zombie-maps.webp)
