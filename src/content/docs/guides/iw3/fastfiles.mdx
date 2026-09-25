@@ -44,9 +44,13 @@ import {
   LinkCard,
 } from "@astrojs/starlight/components";
 
+import CodXeUpdateNotice from "../../../../components/CodXeUpdateNotice.astro";
+
 This package contains the CoD Xe fastfiles needed for Call of Duty 4, together
 with a collection of custom maps. Keeping them in one download makes
 sure the fastfiles and maps stay compatible.
+
+<CodXeUpdateNotice />
 
 ![The mp_firingrange custom map running in Call of Duty 4 through CoD Xe](/og/iw3-fastfiles-mp_firingrange.webp)
 
@@ -85,6 +89,7 @@ Install CoD Xe before continuing:
   Download **CoD Xe IW3 Fastfiles v0.1.0**
 </LinkButton>
 
+0. Update to the latest CoD Xe plugin.
 1. Extract the `.zip`.
 2. Open the extracted `codxe-iw3-fastfiles-v0.1.0` folder.
 3. Copy its `_codxe` folder into your Call of Duty 4 game folder and allow it

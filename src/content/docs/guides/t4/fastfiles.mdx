@@ -44,8 +44,12 @@ import {
   LinkCard,
 } from "@astrojs/starlight/components";
 
+import CodXeUpdateNotice from "../../../../components/CodXeUpdateNotice.astro";
+
 This package contains the CoD Xe fastfiles needed to play six custom zombie
 maps in Call of Duty: World at War.
+
+<CodXeUpdateNotice />
 
 ![A custom zombie map running in World at War through CoD Xe](/og/t4-fastfiles-zombie-maps.webp)
 
@@ -114,6 +118,7 @@ Prepare a clean game folder and install CoD Xe before continuing:
   Download **CoD Xe T4 Fastfiles v0.1.0**
 </LinkButton>
 
+0. Update to the latest CoD Xe plugin.
 1. Extract the `.zip`.
 2. Open the extracted `codxe-t4-fastfiles-v0.1.0` folder.
 3. Copy its `_codxe` folder into your World at War game folder and allow it to
