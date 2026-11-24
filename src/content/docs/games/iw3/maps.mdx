@@ -1,5 +1,5 @@
 ---
-title: "Call of Duty 4 Custom Maps"
+title: "Call of Duty 4 map downloads"
 description: Download and install Call of Duty 4 multiplayer maps on Xbox 360 or Xenia.
 head:
   - tag: meta
@@ -36,48 +36,24 @@ head:
       content: The mp_firingrange custom map running in Call of Duty 4 through CoD Xe
 ---
 
-import { CardGrid, LinkCard } from "@astrojs/starlight/components";
-import MapCatalog from "../../../../components/MapCatalog.astro";
+import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
 
-Choose a Call of Duty 4 multiplayer map below. Each ZIP works on Xbox 360 and Xenia.
+Choose a multiplayer map to download its ZIP for Xbox 360 or Xenia. Install Call of Duty 4 **TU4** and the [current CoD Xe client](/getting-started/) before [installing a map](#install-a-map-manually).
 
-![The mp_firingrange custom map running in Call of Duty 4 through CoD Xe](/og/iw3-fastfiles-mp_firingrange.webp)
-
-## What You Need
-
-- A **genuine USA / Europe copy** of Call of Duty 4: Modern Warfare
-- Call of Duty 4 **TU4**
-- **CoD Xe client r415 or later** to play audio from map `.pak` files.
-
-Install CoD Xe before continuing:
-
-<CardGrid>
-  <LinkCard
-    title="Xbox 360"
-    href="/guides/codxe/xbox-360/"
-    description="Install CoD Xe on an Xbox 360."
-  />
-  <LinkCard
-    title="Xenia"
-    href="/guides/codxe/xenia/"
-    description="Install CoD Xe on Xenia Canary."
-  />
-</CardGrid>
-
-## Available maps
-
-<MapCatalog game="iw3" server:defer>
+<CatalogDownloads game="iw3" server:defer>
   <p slot="fallback">Loading map downloads…</p>
-</MapCatalog>
+</CatalogDownloads>
+
+The eight Star Wars maps are bundled with [Galactic Warfare](/guides/iw3/galactic-warfare/).
 
 ## Install a map manually
 
-The CoD Xe client includes the required IW3 fastfiles. Extract your map ZIP into the game content folder for your platform.
+Extract your map ZIP into the game content folder for your platform.
 
-| Platform | Game content folder |
-| --- | --- |
+| Platform | Game content folder                                                   |
+| -------- | --------------------------------------------------------------------- |
 | Xbox 360 | `_codxe\games\iw3\` on the HDD or USB drive where CoD Xe is installed |
-| Xenia | `plugins\415607E6\_codxe\` in your Xenia storage directory |
+| Xenia    | `plugins\415607E6\_codxe\` in your Xenia storage directory            |
 
 The ZIP includes `usermaps` and the map folder inside it. For example, Rust extracts to `usermaps/mp_mw2_rust/`. For a manual update, move the previous copy of that map folder aside before extracting the new ZIP.
 

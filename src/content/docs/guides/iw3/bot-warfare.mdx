@@ -66,31 +66,18 @@ Download the latest Bot Warfare release:
   Download **Bot Warfare**
 </LinkButton>
 
-Extract the contents of the `.zip` into your Call of Duty 4 game folder.
+Open `_codxe/mods/` inside the ZIP and copy the complete `bot_warfare` folder to your CoD Xe installation:
 
-When installed correctly, your folder should look like this:
+| Platform | Destination                                                       |
+| -------- | ----------------------------------------------------------------- |
+| Xbox 360 | `_codxe\games\iw3\mods\bot_warfare\` on your CoD Xe drive         |
+| Xenia    | `plugins\415607E6\_codxe\mods\bot_warfare\` in your Xenia storage |
 
-<FileTree>
-
-- `Call of Duty 4 - Modern Warfare`
-  - \_codxe
-    - mods
-      - bot_warfare
-        - maps/
-        - scriptdata/
-        - scripts/
-  - default_mp.xex
-  - ...
-
-</FileTree>
-
-## Required IW3 Fastfiles
-
-Install the current CoD Xe client for the required IW3 fastfiles. You can also [download individual custom maps](/guides/iw3/fastfiles/).
+The client already supplies the IW3 fastfiles and discovers mods automatically. You can leave the archive’s `codxe.json` out. If updating, keep your edited bot names and waypoint files in `scriptdata`.
 
 ## Select Bot Warfare
 
-CoD Xe automatically lists mod folders in `_codxe/mods` in the native **Mods**
+CoD Xe automatically lists installed mod folders in the native **Mods**
 menu. You do not need to edit `codxe.json` to choose an active mod.
 
 1. Start Call of Duty 4 and select **Mods** from the main menu.
@@ -141,21 +128,7 @@ Start lower and increase the count if performance stays stable.
 
 ### Rename Bots
 
-Bot names are stored in `botnames.txt`.
-
-Open the file and add one bot name per line:
-
-<FileTree>
-
-- `Call of Duty 4 - Modern Warfare`
-  - \_codxe
-    - mods
-      - bot_warfare
-        - scriptdata
-          - **botnames.txt**
-  - ...
-
-</FileTree>
+Open `scriptdata/botnames.txt` in your installed `bot_warfare` folder. Enter one bot name per line.
 
 ## Source Code
 

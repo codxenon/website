@@ -1,18 +1,30 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { publishedGames } from "./src/games.mjs";
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://codxenon.dev",
   redirects: {
+    "/guides/iw3/fastfiles/": "/games/iw3/maps/",
     "/guides/iw3-bot-warfare/": "/guides/iw3/bot-warfare/",
   },
   adapter: cloudflare({
     imageService: "compile",
   }),
   integrations: [
+    {
+      name: "local-dev-cache",
+      hooks: {
+        "astro:config:setup": ({ command, updateConfig }) => {
+          // A concurrent build must leave the running dev server's modules intact.
+          if (command === "dev")
+            updateConfig({ vite: { cacheDir: "node_modules/.vite-dev" } });
+        },
+      },
+    },
     starlight({
       title: "CoD Xenon",
       editLink: {
@@ -98,15 +110,17 @@ export default defineConfig({
           ],
         },
         {
-          label: "Game Guides",
+          label: "Games",
           items: [
             {
-              label: "Call of Duty 4 (IW3)",
+              label: "Call of Duty 4",
               items: [
+                { label: "Overview", slug: "games/iw3" },
+                { label: "Map downloads", slug: "games/iw3/maps" },
                 { label: "Bot Warfare", slug: "guides/iw3/bot-warfare" },
                 {
-                  label: "Custom Maps",
-                  slug: "guides/iw3/fastfiles",
+                  label: "Galactic Warfare",
+                  slug: "guides/iw3/galactic-warfare",
                 },
               ],
             },
@@ -126,12 +140,14 @@ export default defineConfig({
               items: [
                 { label: "Bot Warfare", slug: "guides/t4/bot-warfare" },
                 {
-                  label: "Custom Zombie Maps & Fastfiles",
+                  label: "Custom Maps",
                   slug: "guides/t4/fastfiles",
                 },
               ],
             },
-          ],
+          ].filter((group) =>
+            publishedGames.includes(group.items[0].slug.split("/")[1]),
+          ),
         },
         {
           label: "Reference",

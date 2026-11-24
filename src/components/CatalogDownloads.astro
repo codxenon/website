@@ -1,0 +1,266 @@
+---
+import { LinkButton } from "@astrojs/starlight/components";
+
+type Props =
+  | { game: "iw3" | "t4"; modId?: string; platform?: never }
+  | { platform: "xbox360" | "xenia"; game?: never; modId?: never };
+
+const { game, modId, platform } = Astro.props;
+const kind = platform ? "client" : modId ? "mod" : "map";
+const gameName = platform
+  ? platform === "xbox360"
+    ? "Xbox 360"
+    : "Xenia"
+  : game === "iw3"
+    ? "Call of Duty 4"
+    : "World at War";
+
+interface Download {
+  name: string;
+  author?: string;
+  sourceUrl?: string;
+  mapMode?: string;
+  revision: number;
+  downloadUrl: string;
+  downloadBytes: number;
+}
+
+function originalPage(value: unknown): string | undefined {
+  if (
+    typeof value !== "string" ||
+    value.length > 2048 ||
+    !value.startsWith("https://")
+  )
+    return;
+  try {
+    const url = new URL(value);
+    if (!url.username && !url.password && !/[\s\\]/.test(value))
+      return url.href;
+  } catch {
+    // An invalid credit link should leave the map download usable.
+  }
+}
+
+const origin = "https://packages.codxenon.dev";
+const catalogUrl = origin + "/channels/stable.json";
+let downloads: Download[] | undefined;
+try {
+  const response = await fetch(catalogUrl, {
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!response.ok) throw new Error(`Catalog returned HTTP ${response.status}`);
+  const pointer = await response.json();
+  if (
+    pointer.schemaVersion !== 1 ||
+    typeof pointer.catalogSha256 !== "string" ||
+    !/^[0-9a-f]{64}$/.test(pointer.catalogSha256)
+  )
+    throw new Error("Invalid stable channel");
+  const snapshot = await fetch(
+    origin + "/catalogs/" + pointer.catalogSha256 + ".json",
+    {
+      signal: AbortSignal.timeout(8000),
+    },
+  );
+  if (!snapshot.ok) throw new Error("Catalog snapshot unavailable");
+  const bytes = await snapshot.arrayBuffer();
+  const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  const hex = Array.from(hash, (byte) =>
+    byte.toString(16).padStart(2, "0"),
+  ).join("");
+  if (hex !== pointer.catalogSha256) throw new Error("Catalog digest mismatch");
+  const catalog = JSON.parse(new TextDecoder().decode(bytes));
+  if (
+    catalog.schemaVersion !== 1 ||
+    catalog.channel !== "stable" ||
+    !Array.isArray(catalog.packages)
+  ) {
+    throw new Error("Unexpected catalog format");
+  }
+  const matches: Download[] = [];
+  for (const entry of catalog.packages) {
+    if (entry?.kind !== kind) continue;
+    if (
+      platform
+        ? entry.target !== platform || entry.id !== "codxe"
+        : entry.game !== game || (modId && entry.id !== modId)
+    )
+      continue;
+    const path = platform
+      ? `software/client/${platform}/codxe-${platform}-r${entry.revision}.zip`
+      : `content/${game}/${kind}s/${entry.id}-r${entry.revision}.zip`;
+    if (
+      typeof entry.name !== "string" ||
+      !entry.name.trim() ||
+      !Number.isSafeInteger(entry.revision) ||
+      entry.revision < 1 ||
+      !Number.isSafeInteger(entry.archive?.bytes) ||
+      entry.archive.bytes < 1 ||
+      typeof entry.id !== "string" ||
+      !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.id) ||
+      entry.archive.path !== path
+    )
+      throw new Error(`Incomplete ${game} ${kind} download`);
+    matches.push({
+      ...entry,
+      downloadUrl: origin + "/" + entry.archive.path,
+      downloadBytes: entry.archive.bytes,
+      sourceUrl: originalPage(entry.sourceUrl),
+      author: typeof entry.author === "string" ? entry.author : undefined,
+    });
+  }
+  downloads = matches.sort((a, b) => a.name.localeCompare(b.name, "en"));
+} catch (error) {
+  console.error(`Could not load ${game} ${kind} downloads`, error);
+}
+---
+
+{downloads === undefined ? (
+  <p>Downloads are temporarily unavailable. Reload this page to try again.</p>
+) : downloads.length === 0 ? (
+  <p>
+    No {kind} downloads are available for {gameName} yet.
+  </p>
+) : (
+  <catalog-download-list>
+    {kind === "map" && downloads.length > 1 && (
+      <label class="filter" hidden>
+        Find a map <input type="search" placeholder="Name or author" />
+        <span role="status">{downloads.length} maps</span>
+      </label>
+    )}
+    <ul
+      class="catalog-downloads not-content"
+      aria-label={`${gameName} ${kind} downloads`}
+    >
+      {downloads.map((item) => (
+        <li
+          data-search={
+            kind === "map"
+              ? `${item.name} ${item.author ?? ""}`.toLowerCase()
+              : undefined
+          }
+        >
+          <div class="download-row">
+            <div>
+              <strong>{item.name}</strong>
+              <p class="metadata">
+                {[
+                  `r${item.revision}`,
+                  item.mapMode === "zombies"
+                    ? "Zombies"
+                    : item.mapMode === "multiplayer"
+                      ? "Multiplayer"
+                      : undefined,
+                  item.author && `By ${item.author}`,
+                ]
+                  .filter(Boolean)
+                  .join(" · ")}
+                {item.sourceUrl && (
+                  <>
+                    {" · "}
+                    <a
+                      href={item.sourceUrl}
+                      aria-label={`Original ${kind} page for ${item.name}`}
+                    >
+                      Original {kind} page
+                    </a>
+                  </>
+                )}
+              </p>
+            </div>
+            <LinkButton
+              href={item.downloadUrl}
+              icon="download"
+              iconPlacement="start"
+              variant="secondary"
+              aria-label={`Download ${item.name} r${item.revision} ZIP`}
+            >
+              ZIP ·{" "}
+              {(item.downloadBytes / 1_000_000).toLocaleString("en", {
+                maximumFractionDigits: 1,
+              })}{" "}
+              MB
+            </LinkButton>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </catalog-download-list>
+)}
+
+<script>
+  class CatalogDownloadList extends HTMLElement {
+    connectedCallback() {
+      const filter = this.querySelector<HTMLLabelElement>(".filter");
+      const input = filter?.querySelector("input");
+      const status = filter?.querySelector("[role=status]");
+      if (!filter || !input || !status) return;
+      const rows = this.querySelectorAll<HTMLElement>("li[data-search]");
+      filter.hidden = false;
+      input.oninput = () => {
+        let count = 0;
+        const query = input.value.trim().toLowerCase();
+        for (const row of rows) {
+          row.hidden = !row.dataset.search?.includes(query);
+          if (!row.hidden) count++;
+        }
+        status.textContent =
+          count === 0
+            ? "No matching maps"
+            : count === 1
+              ? "1 map"
+              : `${count} maps`;
+      };
+    }
+  }
+  if (!customElements.get("catalog-download-list"))
+    customElements.define("catalog-download-list", CatalogDownloadList);
+</script>
+
+<style>
+  catalog-download-list {
+    display: block;
+  }
+  .filter:not([hidden]) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-weight: 600;
+  }
+  .filter input {
+    font: inherit;
+    min-width: 0;
+    padding: 0.4rem 0.65rem;
+    color: var(--sl-color-white);
+    background: var(--sl-color-black);
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 0.3rem;
+  }
+  .filter span {
+    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-2);
+  }
+  .catalog-downloads {
+    padding: 0;
+    list-style: none;
+  }
+  .catalog-downloads > li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+  .download-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+  .metadata {
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+
+    margin: 0.2rem 0 0;
+  }
+</style>

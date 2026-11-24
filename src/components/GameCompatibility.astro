@@ -1,0 +1,37 @@
+---
+import { games, publishedGames } from "../games.mjs";
+import InlineDownload from "./inline-download.astro";
+---
+
+<table>
+  <thead>
+    <tr>
+      <th>Game</th>
+      <th>Title ID</th>
+      <th>Media ID</th>
+      <th>Title update</th>
+    </tr>
+  </thead>
+  <tbody>
+    {games
+      .filter((g) => publishedGames.includes(g.id))
+      .map((g) => (
+        <tr>
+          <td>{g.title}</td>
+          <td>
+            <code>{g.titleId}</code>
+          </td>
+          <td>
+            <a href={g.disc}>
+              <code>{g.mediaId}</code>
+            </a>
+          </td>
+          <td>
+            {g.updates.map((u) => (
+              <InlineDownload href={u.url} label={u.label} />
+            ))}
+          </td>
+        </tr>
+      ))}
+  </tbody>
+</table>

@@ -139,3 +139,62 @@
     max-height: 220px;
   }
 }
+
+.hero:has(.cod-cover) {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: block;
+  margin-block: 1.5rem 2.5rem;
+  padding: clamp(2rem, 7vw, 6rem) clamp(1.25rem, 5vw, 4rem);
+  border-radius: 0.75rem;
+  background: #101612;
+  color: white;
+}
+.hero:has(.cod-cover) .hero-html {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  z-index: -1;
+}
+.hero .hero-html .cod-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.hero:has(.cod-cover) .hero-html::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgb(10 17 13 / 94%) 0%,
+    rgb(10 17 13 / 79%) 46%,
+    rgb(10 17 13 / 15%) 100%
+  );
+}
+.hero:has(.cod-cover) .stack {
+  align-items: flex-start;
+  text-align: left;
+}
+.hero:has(.cod-cover) .actions {
+  justify-content: flex-start;
+}
+.hero:has(.cod-cover) h1,
+.hero:has(.cod-cover) .tagline {
+  color: #fff;
+}
+.hero:has(.cod-cover) .tagline {
+  max-width: 26rem;
+}
+.hero:has(.cod-cover) .sl-link-button.primary {
+  background: #c6e69b;
+  border-color: #c6e69b;
+  color: #14200b;
+}
+.hero:has(.cod-cover) .sl-link-button.secondary {
+  background: #17211b;
+  border-color: #b5c7ad;
+  color: white;
+}

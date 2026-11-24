@@ -1,51 +1,28 @@
 ---
-title: "Install CoD Xe on Xbox 360"
-description: Install the CoD Xe plugin on Xbox 360 hardware.
+title: Install CoD Xe on Xbox 360
+description: Install CoD Xe and set up Call of Duty 4 multiplayer on an Xbox 360.
 ---
 
-import { Aside, LinkButton, LinkCard } from "@astrojs/starlight/components";
+import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
 
-Use this guide for an Xbox 360 that can run unsigned code. An **XDK**,
-**RGH**, **JTAG**, or **BadUpdate**.
+You need an Xbox 360 that can load unsigned plugins, a clean extracted copy of **Call of Duty 4** (USA / Europe), and an HDD or USB drive.
 
-## What You Need
+## 1. Download the Xbox 360 client
 
-- An Xbox 360 that can run unsigned code
-- A supported game extracted to a normal folder
+<CatalogDownloads platform="xbox360" server:defer>
+  <p slot="fallback">Loading the Xbox 360 release…</p>
+</CatalogDownloads>
 
-<Aside type="caution" title="Use game-specific title updates">
-  CoD Xe requires the correct title update for each game. Install the title
-  update listed in the game guide you are following.
-</Aside>
+Extract the ZIP on your computer. Keep the entire `_codxe` folder together.
 
-## Download CoD Xe
+## 2. Install TU4 and the client
 
-Download the standalone plugin:
+1. Open `title-updates/iw3/TU4/` in the ZIP and copy the `TU_` file to the console’s HDD cache. [Xbox title update instructions](/guides/title-updates/xbox-360/).
+2. Copy `_codxe` to the **root** of the drive you want to use. For example, the plugin on the first USB drive is `USB0:\_codxe\codxe.xex`. If updating, unload the plugin first, merge the new client files, and keep your existing maps, mods and settings.
+3. Set a plugin slot in your loader to that exact `codxe.xex` path. In DashLaunch, save the configuration and restart the console.
 
-<LinkButton
-  href="https://github.com/michaeloliverx/codxe/releases/latest/download/codxe.xex"
-  download
-  icon="download"
->
-  Download **CoD Xe**
-</LinkButton>
+## 3. Start multiplayer
 
-## Configure DashLaunch
+Launch Call of Duty 4 multiplayer and open **Mods**. Custom maps go in `_codxe\games\iw3\usermaps\`; mods go in `_codxe\games\iw3\mods\` on the same drive.
 
-Set `codxe.xex` as a [DashLaunch](https://consolemods.org/wiki/Xbox_360:DashLaunch) plugin.
-
-Your plugin setup could look similar to this:
-
-![dashlaunch](../../../../assets/botwarfare/dashlaunch_plugins.webp)
-
-After saving your DashLaunch settings, reboot the console.
-
-## Next Step
-
-Install the title update required by the game guide you are following:
-
-<LinkCard
-  title="Install a title update on Xbox 360"
-  href="/guides/title-updates/xbox-360/"
-  description="Choose the compatible update and install it on your console."
-/>
+[Browse maps](/games/iw3/maps/) or [choose a mod](/games/iw3/).

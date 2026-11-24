@@ -1,77 +1,28 @@
 ---
-title: "Install CoD Xe on Xenia"
-description: Install the CoD Xe plugin with Xenia Canary or Xenia Canary Netplay on Windows.
+title: Install CoD Xe on Xenia
+description: Set up the CoD Xe patches and plugins for Call of Duty 4 in Xenia on Windows.
 ---
 
-import {
-  Aside,
-  FileTree,
-  LinkButton,
-  LinkCard,
-} from "@astrojs/starlight/components";
+import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
 
-Use this guide when running CoD Xe through Xenia instead of Xbox 360 hardware.
+Use [Xenia Canary or Canary Netplay](/guides/xenia/install/) and a clean copy of **Call of Duty 4** for Xbox 360 (USA / Europe). Run Xenia once to create its configuration, then close it.
 
-## What You Need
+## 1. Download the Xenia client
 
-- **Xenia Canary** or **Xenia Canary Netplay** installed and updated on Windows
-- A supported game extracted to a normal folder
+<CatalogDownloads platform="xenia" server:defer>
+  <p slot="fallback">Loading the Xenia release…</p>
+</CatalogDownloads>
 
-<LinkCard
-  title="Install Xenia"
-  href="/guides/xenia/install/"
-  description="Choose a Xenia version and update Netplay to the latest nightly build."
-/>
+Extract the ZIP. It includes `patches`, `plugins` and `title-updates` at the top level.
 
-<Aside type="caution" title="Use game-specific title updates">
-  CoD Xe requires the correct title update for each game. Install the title
-  update listed in the game guide you are following.
-</Aside>
+## 2. Copy the patches and plugins
 
-## Copy Files
+1. Put the supplied `patches` files in the patches directory for your Xenia build and the `plugins` folder in your Xenia storage directory. In a portable setup these folders sit beside the executable. Merge into the existing folders when updating.
+2. Check that `plugins\415607E6\plugins.toml` and `plugins\415607E6\_codxe\modules\codxe.iw3.mp.xex` exist. Keep your own maps, mods and settings.
+3. With Xenia closed, enable `allow_plugins` and `allow_game_relative_writes` in its configuration. [Xenia configuration guide](/guides/xenia/install/#configure-xenia-for-cod-xe).
 
-Download the latest CoD Xe release `.zip`. Do not use the standalone
-`codxe.xex` download for Xenia. The `.zip` contains additional Xenia files that
-Xbox 360 hardware users do not need.
+## 3. Install TU4 and start multiplayer
 
-<LinkButton
-  href="https://github.com/michaeloliverx/codxe/releases/latest"
-  icon="download"
->
-  Download **CoD Xe release zip**
-</LinkButton>
+Open Xenia and choose **File → Install Content…**. Select the file in `title-updates/iw3/TU4/` from the ZIP. After Xenia confirms installation, start Call of Duty 4 multiplayer and open **Mods**.
 
-After extracting the CoD Xe `.zip`, the folder should look similar to this:
-
-<FileTree>
-
-- codxe
-  - iw3/
-  - iw4/
-  - t4/
-  - xenia
-    - patches/
-    - plugins/
-  - ...
-
-</FileTree>
-
-Copy the contents of the extracted `codxe` folder's `xenia` folder into the
-same folder as your Xenia executable.
-
-When copied correctly, your Xenia folder should look similar to this:
-
-<FileTree>
-
-- Xenia
-  - patches/
-  - plugins/
-  - xenia_canary.exe or xenia_canary_netplay.exe
-  - xenia-canary-config.toml or xenia-canary-netplay.config.toml
-
-</FileTree>
-
-## Next Step
-
-Return to the game or mod guide you were following, then start the game's
-multiplayer `.xex`.
+For this game, maps go in `plugins\415607E6\_codxe\usermaps\` and mods in `plugins\415607E6\_codxe\mods\`. [Browse maps](/games/iw3/maps/) or [choose a mod](/games/iw3/).

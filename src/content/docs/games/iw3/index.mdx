@@ -1,0 +1,139 @@
+---
+title: "Call of Duty 4: Modern Warfare"
+description: Custom multiplayer maps, Bot Warfare and Galactic Warfare for the Xbox 360 edition of Call of Duty 4.
+---
+
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+Play custom maps in System Link, add bots to private matches, or load a total conversion from the in-game Mods menu. CoD Xe runs with the USA / Europe Xbox 360 release and **Title Update 4** on console and Xenia.
+
+<CardGrid>
+  <LinkCard
+    title="Multiplayer map downloads"
+    href="/games/iw3/maps/"
+    description="Pick individual ports and install them in your game library."
+  />
+  <LinkCard
+    title="Star Wars: Galactic Warfare"
+    href="/guides/iw3/galactic-warfare/"
+    description="Play as the Rebels or the Empire across eight maps, with Bot Warfare included."
+  />
+  <LinkCard
+    title="Bot Warfare"
+    href="/guides/iw3/bot-warfare/"
+    description="Add bots to multiplayer, set up a match and adjust bot behaviour."
+  />
+  <LinkCard
+    title="Set up CoD Xe"
+    href="/getting-started/"
+    description="Install the client and TU4 on Xbox 360 or Xenia."
+  />
+</CardGrid>
+
+## Porting showcase
+
+import cjmg2Radiant from "../../../../assets/splash/mp_cjmg2_iw3xo_radiant.webp";
+import cjmg2InGame from "../../../../assets/splash/mp_cjmg2_ingame.webp";
+import moTestRadiant from "../../../../assets/splash/mp_mo_test_iw3xo_radiant.webp";
+import moTestInGame from "../../../../assets/splash/mp_mo_test_ingame.webp";
+import coastalInGame from "../../../../assets/splash/mp_coastal_ingame.webp";
+import nuketownInGame from "../../../../assets/splash/mp_4nuketown_ingame.webp";
+import gapTrainingInGame from "../../../../assets/splash/mp_gap_training.webp";
+import slickInGame from "../../../../assets/splash/mp_slick_ingame.webp";
+import at4WeaponPort from "../../../../assets/splash/iw3_singleplayer_weapon_port_at4.webp";
+import mw2crInterventionWeaponPort from "../../../../assets/splash/iw3_mw2cr_intervention.webp";
+import menuMaplist from "../../../../assets/splash/iw3_menu_maplist.webp";
+import mikeMyersModel from "../../../../assets/splash/iw3_custom_model_mike_myers.webp";
+import sonicModel from "../../../../assets/splash/iw3_custom_model_sonic.webp";
+
+### Radiant to In-Game
+
+<div class="map-comparisons">
+  <div class="map-comparison">
+    <figure>
+      <img src={cjmg2Radiant.src} alt="mp_cjmg2 open in Radiant" />
+      <figcaption>Radiant</figcaption>
+    </figure>
+    <span aria-hidden="true">&rarr;</span>
+    <figure>
+      <img src={cjmg2InGame.src} alt="mp_cjmg2 running in-game" />
+      <figcaption>In-game</figcaption>
+    </figure>
+  </div>
+
+  <div class="map-comparison">
+    <figure>
+      <img src={moTestRadiant.src} alt="mp_mo_test open in Radiant" />
+      <figcaption>Radiant</figcaption>
+    </figure>
+    <span aria-hidden="true">&rarr;</span>
+    <figure>
+      <img src={moTestInGame.src} alt="mp_mo_test running in-game" />
+      <figcaption>In-game</figcaption>
+    </figure>
+  </div>
+</div>
+
+### Ported PC Maps
+
+<div class="ported-maps">
+  <figure>
+    <code>mp_coastal</code>
+    <img src={coastalInGame.src} alt="mp_coastal running in-game" />
+  </figure>
+  <figure>
+    <code>mp_4nuketown</code>
+    <img src={nuketownInGame.src} alt="mp_4nuketown running in-game" />
+  </figure>
+  <figure>
+    <code>mp_gap_training</code>
+    <img src={gapTrainingInGame.src} alt="mp_gap_training running in-game" />
+  </figure>
+  <figure>
+    <code>mp_slick</code>
+    <img src={slickInGame.src} alt="mp_slick running in-game" />
+  </figure>
+</div>
+
+### Weapon Ports
+
+<div class="ported-maps">
+  <figure>
+    <code>MW2:CR Intervention</code>
+    <img
+      src={mw2crInterventionWeaponPort.src}
+      alt="MW2:CR Intervention ported to multiplayer"
+    />
+  </figure>
+  <figure>
+    <code>AT4</code>
+    <img
+      src={at4WeaponPort.src}
+      alt="AT4 single-player weapon ported to multiplayer"
+    />
+  </figure>
+</div>
+
+### Menu Edits
+
+<div class="single-example">
+  <figure>
+    <img
+      src={menuMaplist.src}
+      alt="Extended map list achieved by editing an existing menu"
+    />
+  </figure>
+</div>
+
+### Custom Models
+
+<div class="ported-maps">
+  <figure>
+    <code>Mike Myers</code>
+    <img src={mikeMyersModel.src} alt="Mike Myers custom model in-game" />
+  </figure>
+  <figure>
+    <code>Sonic</code>
+    <img src={sonicModel.src} alt="Sonic custom model in-game" />
+  </figure>
+</div>
