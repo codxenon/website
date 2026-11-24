@@ -1,0 +1,179 @@
+---
+import { LinkButton } from "@astrojs/starlight/components";
+
+interface Props {
+  game: "iw3" | "t4";
+}
+
+const { game } = Astro.props;
+const gameName = game === "iw3" ? "Call of Duty 4" : "World at War";
+
+interface MapDownload {
+  name: string;
+  author?: string;
+  sourceUrl?: string;
+  mapMode?: string;
+  revision: number;
+  downloadUrl: string;
+  downloadBytes: number;
+  changeNotes?: string[];
+}
+
+function originalPage(value: unknown): string | undefined {
+  if (typeof value !== "string" || value.length > 2048 || !value.startsWith("https://")) return;
+  try {
+    const url = new URL(value);
+    if (!url.username && !url.password && !/[\s\\]/.test(value)) return url.href;
+  } catch {
+    // An invalid credit link should leave the map download usable.
+  }
+}
+
+const origin = "https://packages.codxenon.dev";
+const catalogUrl = origin + "/channels/stable.json";
+let maps: MapDownload[] | undefined;
+try {
+  const response = await fetch(catalogUrl, {
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!response.ok) throw new Error(`Catalog returned HTTP ${response.status}`);
+  const pointer = await response.json();
+  if (pointer.schemaVersion !== 1 || typeof pointer.catalogSha256 !== "string" ||
+      !/^[0-9a-f]{64}$/.test(pointer.catalogSha256)) throw new Error("Invalid stable channel");
+  const snapshot = await fetch(origin + "/catalogs/" + pointer.catalogSha256 + ".json", {
+    signal: AbortSignal.timeout(8000),
+  });
+  if (!snapshot.ok) throw new Error("Catalog snapshot unavailable");
+  const bytes = await snapshot.arrayBuffer();
+  const hash = new Uint8Array(await crypto.subtle.digest("SHA-256", bytes));
+  const hex = Array.from(hash, (byte) => byte.toString(16).padStart(2, "0")).join("");
+  if (hex !== pointer.catalogSha256) throw new Error("Catalog digest mismatch");
+  const catalog = JSON.parse(new TextDecoder().decode(bytes));
+  if (
+    catalog.schemaVersion !== 1 ||
+    catalog.channel !== "stable" ||
+    !Array.isArray(catalog.packages)
+  ) {
+    throw new Error("Unexpected catalog format");
+  }
+  const downloads: MapDownload[] = [];
+  for (const entry of catalog.packages) {
+    if (entry?.game !== game || entry.kind !== "map") continue;
+    if (
+      typeof entry.name !== "string" ||
+      !entry.name.trim() ||
+      !Number.isSafeInteger(entry.revision) ||
+      entry.revision < 1 ||
+      !Number.isSafeInteger(entry.archive?.bytes) || entry.archive.bytes < 1 ||
+      typeof entry.id !== "string" || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.id) ||
+      entry.archive.path !== `content/${game}/maps/${entry.id}-r${entry.revision}.zip`
+    )
+      throw new Error(`Incomplete ${game} map download`);
+    downloads.push({
+      ...entry,
+      downloadUrl: origin + "/" + entry.archive.path,
+      downloadBytes: entry.archive.bytes,
+      sourceUrl: originalPage(entry.sourceUrl),
+      author: typeof entry.author === "string" ? entry.author : undefined,
+      changeNotes: Array.isArray(entry.changeNotes)
+        ? entry.changeNotes.filter((note: unknown) => typeof note === "string")
+        : [],
+    });
+  }
+  maps = downloads.sort((a, b) => a.name.localeCompare(b.name, "en"));
+} catch (error) {
+  console.error(`Could not load the ${game} map catalog`, error);
+}
+---
+
+{maps === undefined ? (
+  <p>
+    The map catalog is temporarily unavailable. Reload this page to try again.
+  </p>
+) : maps.length === 0 ? (
+  <p>No {gameName} maps have been published yet.</p>
+) : (
+  <ul class="map-downloads not-content" aria-label={`${gameName} map downloads`}>
+    {maps.map((map) => (
+      <li>
+        <div class="map-row">
+          <div>
+            <strong>{map.name}</strong>
+            <p class="metadata">
+              {[
+                `r${map.revision}`,
+                map.mapMode === "zombies"
+                  ? "Zombies"
+                  : map.mapMode === "multiplayer"
+                    ? "Multiplayer"
+                    : undefined,
+                map.author && `By ${map.author}`,
+              ]
+                .filter(Boolean)
+                .join(" · ")}
+              {map.sourceUrl && (
+                <>{" · "}<a href={map.sourceUrl} aria-label={`Original map page for ${map.name}`}>Original map page</a></>
+              )}
+            </p>
+          </div>
+          <LinkButton
+            href={map.downloadUrl}
+            icon="download"
+            iconPlacement="start"
+            variant="secondary"
+            aria-label={`Download ${map.name} r${map.revision} ZIP`}
+          >
+            ZIP ·{" "}
+            {(map.downloadBytes / 1_000_000).toLocaleString("en", {
+              maximumFractionDigits: 1,
+            })}{" "}
+            MB
+          </LinkButton>
+        </div>
+        {!!map.changeNotes?.length && (
+          <details>
+            <summary>Release notes</summary>
+            <ul>
+              {map.changeNotes.map((note) => (
+                <li>{note}</li>
+              ))}
+            </ul>
+          </details>
+        )}
+      </li>
+    ))}
+  </ul>
+)}
+
+<style>
+  .map-downloads {
+    padding: 0;
+    list-style: none;
+  }
+  .map-downloads > li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--sl-color-gray-5);
+  }
+  .map-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    align-items: center;
+  }
+  .metadata,
+  details {
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+  }
+  .metadata {
+    margin: 0.2rem 0 0;
+  }
+  details {
+    margin-top: 0.5rem;
+  }
+  summary {
+    width: fit-content;
+    cursor: pointer;
+  }
+</style>

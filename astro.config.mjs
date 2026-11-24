@@ -105,7 +105,7 @@ export default defineConfig({
               items: [
                 { label: "Bot Warfare", slug: "guides/iw3/bot-warfare" },
                 {
-                  label: "Custom Maps & Fastfiles",
+                  label: "Custom Maps",
                   slug: "guides/iw3/fastfiles",
                 },
               ],

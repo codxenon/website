@@ -1,6 +1,6 @@
 ---
-title: "Call of Duty 4 Custom Maps & Fastfiles"
-description: Install CoD Xe fastfiles and custom maps for Call of Duty 4.
+title: "Call of Duty 4 Custom Maps"
+description: Download and install Call of Duty 4 multiplayer maps on Xbox 360 or Xenia.
 head:
   - tag: meta
     attrs:
@@ -36,33 +36,18 @@ head:
       content: The mp_firingrange custom map running in Call of Duty 4 through CoD Xe
 ---
 
-import {
-  Aside,
-  CardGrid,
-  FileTree,
-  LinkButton,
-  LinkCard,
-} from "@astrojs/starlight/components";
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+import MapCatalog from "../../../../components/MapCatalog.astro";
 
-import CodXeUpdateNotice from "../../../../components/CodXeUpdateNotice.astro";
-
-This package contains the CoD Xe fastfiles needed for Call of Duty 4, together
-with a collection of custom maps. Keeping them in one download makes
-sure the fastfiles and maps stay compatible.
-
-<CodXeUpdateNotice />
+Choose a Call of Duty 4 multiplayer map below. Each ZIP works on Xbox 360 and Xenia.
 
 ![The mp_firingrange custom map running in Call of Duty 4 through CoD Xe](/og/iw3-fastfiles-mp_firingrange.webp)
-
-:::note[Map credits]
-All credit and respect goes to the original creators of the included custom maps.
-:::
 
 ## What You Need
 
 - A **genuine USA / Europe copy** of Call of Duty 4: Modern Warfare
 - Call of Duty 4 **TU4**
-- The latest **CoD Xe** plugin
+- **CoD Xe client r415 or later** to play audio from map `.pak` files.
 
 Install CoD Xe before continuing:
 
@@ -79,58 +64,26 @@ Install CoD Xe before continuing:
   />
 </CardGrid>
 
-## Download and Install
+## Available maps
 
-<LinkButton
-  href="https://downloads.codxenon.dev/codxe-iw3-fastfiles-v0.1.0.zip"
-  download
-  icon="download"
->
-  Download **CoD Xe IW3 Fastfiles v0.1.0**
-</LinkButton>
+<MapCatalog game="iw3" server:defer>
+  <p slot="fallback">Loading map downloads…</p>
+</MapCatalog>
 
-0. Update to the latest CoD Xe plugin.
-1. Extract the `.zip`.
-2. Open the extracted `codxe-iw3-fastfiles-v0.1.0` folder.
-3. Copy its `_codxe` folder into your Call of Duty 4 game folder and allow it
-   to merge with your existing `_codxe` folder.
+## Install a map manually
 
-Do **not** delete or replace your existing `_codxe` folder.
+The CoD Xe client includes the required IW3 fastfiles. Extract your map ZIP into the game content folder for your platform.
 
-When installed correctly, the relevant files should look like this:
+| Platform | Game content folder |
+| --- | --- |
+| Xbox 360 | `_codxe\games\iw3\` on the HDD or USB drive where CoD Xe is installed |
+| Xenia | `plugins\415607E6\_codxe\` in your Xenia storage directory |
 
-<FileTree>
-
-- `Call of Duty 4 - Modern Warfare`
-  - \_codxe
-    - zone
-      - **codxe_common_mp.ff**
-      - **codxe_ui_mp.ff**
-    - usermaps
-      - mp_4nuketown
-        - mp_4nuketown.ff
-        - mp_4nuketown_load.ff
-      - mp_mw2_rust
-        - mp_mw2_rust.ff
-        - mp_mw2_rust_load.ff
-      - ...
-  - default_mp.xex
-  - ...
-
-</FileTree>
-
-## Required Fastfiles and Optional Maps
-
-The fastfiles in `_codxe/zone` are required for CoD Xe on Call of Duty 4. Keep
-`codxe_common_mp.ff` and `codxe_ui_mp.ff` installed, even if you do not want to
-play custom maps.
-
-The maps in `_codxe/usermaps` are optional. You can leave them installed to
-play them, or remove individual map folders later if you need the storage.
+The ZIP includes `usermaps` and the map folder inside it. For example, Rust extracts to `usermaps/mp_mw2_rust/`. For a manual update, move the previous copy of that map folder aside before extracting the new ZIP.
 
 ## Use Custom Maps
 
-CoD Xe automatically adds maps in `_codxe/usermaps` to the map picker. The
+CoD Xe reads the game’s `usermaps` folder when populating the map picker. The
 **Custom Maps** list updates when map folders are added or removed.
 
 1. When choosing a map for a System Link or private match, select
