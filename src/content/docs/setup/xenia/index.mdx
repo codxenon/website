@@ -5,9 +5,27 @@ prev: false
 next: false
 ---
 
+import { LinkButton } from "@astrojs/starlight/components";
 import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
 
-Use [Xenia Canary or Canary Netplay](/setup/xenia/emulator/) on Windows. For System Link, use Canary Netplay. Run Xenia once to create its configuration, then close it.
+## Install Xenia
+
+On Windows, use **Canary Netplay** if you plan to play over System Link. Standard **Canary** works for local play.
+
+<LinkButton
+  href="https://github.com/xenia-canary/xenia-canary/releases/latest"
+  variant="secondary"
+>
+  Download Canary
+</LinkButton>
+<LinkButton
+  href="https://github.com/AdrianCassar/xenia-canary/releases/latest"
+  variant="secondary"
+>
+  Download Canary Netplay
+</LinkButton>
+
+Extract the emulator ZIP to its own folder. Run Xenia once to create its configuration file, then close it.
 
 ## Download CoD Xe
 
@@ -18,15 +36,16 @@ Use [Xenia Canary or Canary Netplay](/setup/xenia/emulator/) on Windows. For Sys
 ## Set up the plugin
 
 1. Extract the client ZIP. Copy its `plugins` and `patches` folders into your Xenia storage folder. In a portable setup, this is the folder containing the emulator. Your Xenia log lists the path as `Storage root`.
-2. With Xenia closed, open its [configuration file](/setup/xenia/emulator/#configure-xenia-for-cod-xe) and set both values to `true`:
+2. With Xenia closed, open its TOML configuration file. Depending on the build, it may be named `xenia-canary.config.toml` or `xenia-canary-netplay.config.toml`. Edit these settings.
 
    ```toml
    allow_plugins = true
    allow_game_relative_writes = true
+   keyboard_mode = 2
    ```
 
 3. Open Xenia and choose **Content → Install Content**. Select your game’s [required title update](/help/compatibility/) from the ZIP’s `title-updates` folder. [Title update help](/help/xenia-title-updates/).
-4. Start your game with **File → Open**. The [game formats guide](/setup/game-formats/) shows which file to select for a Games on Demand package, disc image or extracted folder.
+4. Start your game with **File → Open**.
 
 <details>
 <summary>Update or move an existing install</summary>

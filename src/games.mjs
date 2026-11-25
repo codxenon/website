@@ -1,5 +1,5 @@
 // Games with a curated map or mod collection in the preview.
-export const publishedGames = ["iw3", "t4"];
+export const publishedGames = ["iw3", "t4", "iw5"];
 
 export const games = [
   {

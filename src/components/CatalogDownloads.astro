@@ -159,6 +159,7 @@ try {
               <strong>{item.name}</strong>
               <p class="metadata">
                 {[
+                  platform && gameName,
                   `r${item.revision}`,
                   item.mapMode === "zombies"
                     ? "Zombies"
@@ -185,7 +186,7 @@ try {
             <a
               class="download-button"
               href={item.downloadUrl}
-              aria-label={`Download ${item.name} r${item.revision} ZIP`}
+              aria-label={`Download ${item.name} r${item.revision} ZIP${platform ? ` for ${gameName}` : ""}`}
             >
               Download ZIP ·{" "}
               {(item.downloadBytes / 1_000_000).toLocaleString("en", {

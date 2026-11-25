@@ -26,9 +26,6 @@ const isHome = Astro.url.pathname === "/";
       </p>
       <div class="actions">
         <LinkButton href="/setup/">Install CoD Xe</LinkButton>
-        <LinkButton href="#library" variant="secondary">
-          Browse maps &amp; mods
-        </LinkButton>
       </div>
     </div>
     <p class="image-credit">
@@ -106,8 +103,6 @@ const isHome = Astro.url.pathname === "/";
 
   .actions {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
     margin-top: 1.65rem;
   }
   .actions :global(a) {
@@ -123,15 +118,6 @@ const isHome = Astro.url.pathname === "/";
   .actions :global(.primary:hover) {
     background: #e6fbb9;
     border-color: #e6fbb9;
-  }
-  .actions :global(.secondary) {
-    background: #151a13e6;
-    border-color: #a0aa92;
-    color: #fff;
-  }
-  .actions :global(.secondary:hover) {
-    background: #2d3724;
-    color: #fff;
   }
   .actions :global(a:focus-visible) {
     outline: 2px solid #fff;

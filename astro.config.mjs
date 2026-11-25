@@ -23,14 +23,17 @@ export default defineConfig({
     "/getting-started/": "/setup/",
     "/guides/codxe/xbox-360/": "/setup/xbox-360/",
     "/guides/codxe/xenia/": "/setup/xenia/",
-    "/guides/prepare-game-files/": "/setup/game-formats/",
-    "/guides/xenia/install/": "/setup/xenia/emulator/",
+    "/guides/prepare-game-files/": "/setup/",
+    "/setup/game-formats/": "/setup/",
+    "/guides/xenia/install/": "/setup/xenia/#install-xenia",
+    "/setup/xenia/emulator/": "/setup/xenia/#install-xenia",
     "/guides/iw3/fastfiles/": "/games/iw3/maps/",
     "/guides/iw3-bot-warfare/": "/games/iw3/bot-warfare/",
     "/guides/iw3/bot-warfare/": "/games/iw3/bot-warfare/",
     "/guides/iw3/galactic-warfare/": "/games/iw3/galactic-warfare/",
     "/guides/t4/fastfiles/": "/games/t4/zombies/",
     "/guides/t4/bot-warfare/": "/games/t4/bot-warfare/",
+    "/guides/iw5/bot-warfare/": "/games/iw5/bot-warfare/",
     "/games/t4/single-player-settings/": "/games/t4/#single-player-settings",
     "/get-help/": "/help/",
     "/reference/supported-games/": "/help/compatibility/",
@@ -93,13 +96,7 @@ export default defineConfig({
       sidebar: [
         {
           label: "Setup",
-          items: [
-            "setup",
-            "setup/xbox-360",
-            "setup/xenia",
-            "setup/game-formats",
-            { label: "Install Xenia", slug: "setup/xenia/emulator" },
-          ],
+          items: ["setup", "setup/xbox-360", "setup/xenia"],
         },
         {
           label: "Call of Duty 4",
@@ -120,6 +117,13 @@ export default defineConfig({
             { label: "Multiplayer maps", slug: "games/t4/maps" },
             { label: "Zombies maps", slug: "games/t4/zombies" },
             { label: "Bot Warfare", slug: "games/t4/bot-warfare" },
+          ],
+        },
+        {
+          label: "Modern Warfare 3",
+          items: [
+            { label: "Overview", slug: "games/iw5" },
+            { label: "Bot Warfare", slug: "games/iw5/bot-warfare" },
           ],
         },
         {

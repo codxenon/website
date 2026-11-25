@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import iw5BotWarfare from "../assets/iw5_botwarfare/bot-warfare-logo.png";
 import nuketown from "../assets/splash/mp_4nuketown_ingame.webp";
 
 interface Props {
@@ -31,6 +32,13 @@ const collections = [
       { href: "/games/t4/#maps", label: "Browse maps" },
       { href: "/games/t4/bot-warfare/", label: "Bot Warfare" },
     ],
+  },
+  {
+    name: "Modern Warfare 3",
+    type: "Multiplayer mods",
+    image: iw5BotWarfare,
+    description: "Play System Link and private matches against AI opponents.",
+    links: [{ href: "/games/iw5/bot-warfare/", label: "Bot Warfare" }],
   },
 ];
 ---
@@ -167,6 +175,12 @@ const collections = [
   }
   a:hover {
     color: var(--sl-color-white);
+  }
+
+  @media (min-width: 70rem) {
+    .collections {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
   .resources {
     display: grid;

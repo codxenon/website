@@ -37,3 +37,7 @@
 .sl-markdown-content h3 {
   letter-spacing: -0.025em;
 }
+
+.sl-markdown-content img:not(:where(.not-content *)) {
+  border-radius: 0.5rem;
+}
