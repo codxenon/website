@@ -36,6 +36,7 @@ export default defineConfig({
     imageService: "compile",
     prerenderEnvironment: "node",
   }),
+  session: false,
   integrations: [
     {
       name: "local-dev-cache",
