@@ -3,9 +3,15 @@ import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import cloudflare from "@astrojs/cloudflare";
 
+const buildBranch = process.env.WORKERS_CI_BRANCH;
+
 // https://astro.build/config
 export default defineConfig({
-  site: process.env.SITE_URL || "https://codxenon.dev",
+  site:
+    process.env.SITE_URL ||
+    (buildBranch === "beta"
+      ? "https://beta.codxenon.dev"
+      : "https://codxenon.dev"),
   vite: {
     build: {
       // Starlight marks its barrel as side-effect-free. Skip unused components
@@ -53,7 +59,7 @@ export default defineConfig({
       description:
         "CoD Xe setup guides and curated maps and mods for Xbox 360 and Xenia.",
       editLink: {
-        baseUrl: "https://github.com/codxenon/website/edit/next",
+        baseUrl: `https://github.com/codxenon/website/edit/${buildBranch ?? "beta"}`,
       },
       components: {
         Header: "/src/components/SiteHeader.astro",
