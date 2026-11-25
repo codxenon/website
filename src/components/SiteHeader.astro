@@ -1,0 +1,153 @@
+---
+import Search from "virtual:starlight/components/Search";
+import SocialIcons from "virtual:starlight/components/SocialIcons";
+import ThemeSelect from "virtual:starlight/components/ThemeSelect";
+
+const { siteTitle, siteTitleHref } = Astro.locals.starlightRoute;
+const path = Astro.url.pathname;
+const links = [
+  {
+    href: "/setup/",
+    label: "Install",
+    active: path.startsWith("/setup/"),
+  },
+  {
+    href: "/games/",
+    label: "Maps & mods",
+    active: path.startsWith("/games/"),
+  },
+  {
+    href: "/help/compatibility/",
+    label: "Compatibility",
+    active: path.startsWith("/help/compatibility/"),
+  },
+  {
+    href: "/help/",
+    label: "Help",
+    active: path.startsWith("/help/") && path !== "/help/compatibility/",
+  },
+];
+---
+
+<div class="site-header">
+  <div class="site-brand">
+    <a class="wordmark" href={siteTitleHref}>
+      <img src="/favicon.ico" alt="" width="24" height="24" />
+      {siteTitle}
+    </a>
+    <a class="beta" href="/help/" aria-label="Beta preview feedback">
+      Beta preview
+    </a>
+  </div>
+  <nav aria-label="Main navigation">
+    {links.map(({ href, label, active }) => (
+      <a
+        href={href}
+        class:list={{ active }}
+        aria-current={path === href ? "page" : undefined}
+      >
+        {label}
+      </a>
+    ))}
+  </nav>
+  <div class="header-controls">
+    <Search />
+    <div class="appearance">
+      <div class="socials">
+        <SocialIcons />
+      </div>
+      <ThemeSelect />
+    </div>
+  </div>
+</div>
+
+<style>
+  .site-header,
+  .site-brand,
+  .wordmark,
+  .header-controls,
+  .appearance,
+  .socials,
+  nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .site-header {
+    height: 100%;
+    max-width: 96rem;
+    margin-inline: auto;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .wordmark {
+    gap: 0.65rem;
+    color: var(--sl-color-white);
+    font-size: 1.15rem;
+    font-weight: 750;
+    letter-spacing: -0.045em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .wordmark img {
+    object-fit: contain;
+  }
+
+  .site-brand {
+    gap: 0.65rem;
+  }
+  .beta {
+    padding: 0.15rem 0.45rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.3rem;
+    color: var(--sl-color-accent-high);
+    background: var(--sl-color-accent-low);
+    font-size: 0.8rem;
+    font-weight: 650;
+    line-height: 1.4;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .beta:hover {
+    border-color: var(--sl-color-accent);
+  }
+
+  nav,
+  .appearance,
+  .socials {
+    display: none;
+  }
+
+  @media (min-width: 50rem) {
+    nav {
+      display: flex;
+      gap: clamp(0.9rem, 2vw, 2rem);
+    }
+    nav a {
+      color: var(--sl-color-gray-2);
+      font-size: 0.9rem;
+      font-weight: 650;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    nav a:is(:hover, .active) {
+      color: var(--sl-color-text-accent);
+    }
+    .header-controls {
+      gap: 1.25rem;
+    }
+    .appearance {
+      display: flex;
+      gap: 0.85rem;
+    }
+  }
+
+  @media (min-width: 65rem) {
+    .socials {
+      display: flex;
+      gap: 0.85rem;
+    }
+  }
+</style>

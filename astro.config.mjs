@@ -1,18 +1,40 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import { publishedGames } from "./src/games.mjs";
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://codxenon.dev",
+  site: process.env.SITE_URL || "https://codxenon.dev",
+  vite: {
+    build: {
+      // Starlight marks its barrel as side-effect-free. Skip unused components
+      // that would otherwise pull the Markdown parser into the Worker bundle.
+      rolldownOptions: { experimental: { lazyBarrel: true } },
+    },
+  },
   redirects: {
+    "/getting-started/": "/setup/",
+    "/guides/codxe/xbox-360/": "/setup/xbox-360/",
+    "/guides/codxe/xenia/": "/setup/xenia/",
+    "/guides/prepare-game-files/": "/setup/game-formats/",
+    "/guides/xenia/install/": "/setup/xenia/emulator/",
     "/guides/iw3/fastfiles/": "/games/iw3/maps/",
-    "/guides/iw3-bot-warfare/": "/guides/iw3/bot-warfare/",
+    "/guides/iw3-bot-warfare/": "/games/iw3/bot-warfare/",
+    "/guides/iw3/bot-warfare/": "/games/iw3/bot-warfare/",
+    "/guides/iw3/galactic-warfare/": "/games/iw3/galactic-warfare/",
+    "/guides/t4/fastfiles/": "/games/t4/zombies/",
+    "/guides/t4/bot-warfare/": "/games/t4/bot-warfare/",
+    "/games/t4/single-player-settings/": "/games/t4/#single-player-settings",
+    "/get-help/": "/help/",
+    "/reference/supported-games/": "/help/compatibility/",
+    "/reference/credits/": "/help/credits/",
+    "/guides/title-updates/xbox-360/": "/help/xbox-360-title-updates/",
+    "/guides/title-updates/xenia/": "/help/xenia-title-updates/",
   },
   adapter: cloudflare({
     imageService: "compile",
+    prerenderEnvironment: "node",
   }),
   integrations: [
     {
@@ -27,38 +49,22 @@ export default defineConfig({
     },
     starlight({
       title: "CoD Xenon",
+      description:
+        "CoD Xe setup guides and curated maps and mods for Xbox 360 and Xenia.",
       editLink: {
-        baseUrl: "https://github.com/codxenon/website/edit/main",
+        baseUrl: "https://github.com/codxenon/website/edit/next",
       },
+      components: {
+        Header: "/src/components/SiteHeader.astro",
+        Hero: "/src/components/SiteHero.astro",
+        Sidebar: "/src/components/SiteSidebar.astro",
+      },
+      routeMiddleware: ["/src/share-metadata.ts"],
+      pagination: false,
       favicon: "/favicon.ico",
       customCss: [
         // Relative path to your custom CSS file
         "./src/styles/custom.css",
-      ],
-      head: [
-        {
-          tag: "meta",
-          attrs: { property: "og:site_name", content: "CoD Xenon" },
-        },
-        {
-          tag: "meta",
-          attrs: {
-            property: "og:image",
-            content: "https://codxenon.dev/og-image.png",
-          },
-        },
-        {
-          tag: "meta",
-          attrs: { property: "og:image:width", content: "1200" },
-        },
-        {
-          tag: "meta",
-          attrs: { property: "og:image:height", content: "630" },
-        },
-        {
-          tag: "meta",
-          attrs: { property: "og:image:type", content: "image/png" },
-        },
       ],
       social: [
         {
@@ -79,81 +85,50 @@ export default defineConfig({
       ],
       sidebar: [
         {
-          label: "Start Here",
+          label: "Setup",
           items: [
-            "getting-started",
-            { slug: "guides/prepare-game-files" },
-            {
-              label: "Xbox 360",
-              collapsed: true,
-              items: [
-                {
-                  label: "Install Title Updates",
-                  slug: "guides/title-updates/xbox-360",
-                },
-                { label: "Install CoD Xe", slug: "guides/codxe/xbox-360" },
-              ],
-            },
-            {
-              label: "Xenia",
-              collapsed: true,
-              items: [
-                { label: "Install Xenia", slug: "guides/xenia/install" },
-                {
-                  label: "Install Title Updates",
-                  slug: "guides/title-updates/xenia",
-                },
-                { label: "Install CoD Xe", slug: "guides/codxe/xenia" },
-              ],
-            },
-            "get-help",
+            "setup",
+            "setup/xbox-360",
+            "setup/xenia",
+            "setup/game-formats",
+            { label: "Install Xenia", slug: "setup/xenia/emulator" },
           ],
         },
         {
-          label: "Games",
+          label: "Call of Duty 4",
           items: [
+            { label: "Overview", slug: "games/iw3" },
+            { label: "Multiplayer maps", slug: "games/iw3/maps" },
+            { label: "Bot Warfare", slug: "games/iw3/bot-warfare" },
             {
-              label: "Call of Duty 4",
-              items: [
-                { label: "Overview", slug: "games/iw3" },
-                { label: "Map downloads", slug: "games/iw3/maps" },
-                { label: "Bot Warfare", slug: "guides/iw3/bot-warfare" },
-                {
-                  label: "Galactic Warfare",
-                  slug: "guides/iw3/galactic-warfare",
-                },
-              ],
+              label: "Galactic Warfare",
+              slug: "games/iw3/galactic-warfare",
             },
-            {
-              label: "Modern Warfare 2 (IW4)",
-              items: [
-                { label: "Bot Warfare", slug: "guides/iw4/bot-warfare" },
-                { label: "Fastfiles", slug: "guides/iw4/fastfiles" },
-              ],
-            },
-            {
-              label: "Modern Warfare 3 (IW5)",
-              items: [{ label: "Bot Warfare", slug: "guides/iw5/bot-warfare" }],
-            },
-            {
-              label: "World at War (T4)",
-              items: [
-                { label: "Bot Warfare", slug: "guides/t4/bot-warfare" },
-                {
-                  label: "Custom Maps",
-                  slug: "guides/t4/fastfiles",
-                },
-              ],
-            },
-          ].filter((group) =>
-            publishedGames.includes(group.items[0].slug.split("/")[1]),
-          ),
+          ],
         },
         {
-          label: "Reference",
+          label: "World at War",
           items: [
-            { slug: "reference/supported-games" },
-            { slug: "reference/credits" },
+            { label: "Overview", slug: "games/t4" },
+            { label: "Multiplayer maps", slug: "games/t4/maps" },
+            { label: "Zombies maps", slug: "games/t4/zombies" },
+            { label: "Bot Warfare", slug: "games/t4/bot-warfare" },
+          ],
+        },
+        {
+          label: "Help & reference",
+          items: [
+            "help",
+            "help/compatibility",
+            {
+              label: "Xbox 360 title updates",
+              slug: "help/xbox-360-title-updates",
+            },
+            {
+              label: "Xenia title updates",
+              slug: "help/xenia-title-updates",
+            },
+            "help/credits",
           ],
         },
       ],

@@ -1,5 +1,5 @@
 ---
-import { games, publishedGames } from "../games.mjs";
+import { games } from "../games.mjs";
 import InlineDownload from "./inline-download.astro";
 ---
 
@@ -10,12 +10,12 @@ import InlineDownload from "./inline-download.astro";
       <th>Title ID</th>
       <th>Media ID</th>
       <th>Title update</th>
+      <th>Modes</th>
     </tr>
   </thead>
   <tbody>
-    {games
-      .filter((g) => publishedGames.includes(g.id))
-      .map((g) => (
+    {games.flatMap((g) =>
+      g.updates.map((update) => (
         <tr>
           <td>{g.title}</td>
           <td>
@@ -27,11 +27,11 @@ import InlineDownload from "./inline-download.astro";
             </a>
           </td>
           <td>
-            {g.updates.map((u) => (
-              <InlineDownload href={u.url} label={u.label} />
-            ))}
+            <InlineDownload href={update.url} label={update.label} />
           </td>
+          <td>{update.modes}</td>
         </tr>
-      ))}
+      )),
+    )}
   </tbody>
 </table>

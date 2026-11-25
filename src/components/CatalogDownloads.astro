@@ -1,11 +1,19 @@
 ---
-import { LinkButton } from "@astrojs/starlight/components";
-
 type Props =
-  | { game: "iw3" | "t4"; modId?: string; platform?: never }
-  | { platform: "xbox360" | "xenia"; game?: never; modId?: never };
+  | {
+      game: "iw3" | "t4";
+      modId?: string;
+      mapMode?: "multiplayer" | "zombies";
+      platform?: never;
+    }
+  | {
+      platform: "xbox360" | "xenia";
+      game?: never;
+      modId?: never;
+      mapMode?: never;
+    };
 
-const { game, modId, platform } = Astro.props;
+const { game, modId, mapMode, platform } = Astro.props;
 const kind = platform ? "client" : modId ? "mod" : "map";
 const gameName = platform
   ? platform === "xbox360"
@@ -80,6 +88,7 @@ try {
   const matches: Download[] = [];
   for (const entry of catalog.packages) {
     if (entry?.kind !== kind) continue;
+    if (mapMode && entry.mapMode !== mapMode) continue;
     if (
       platform
         ? entry.target !== platform || entry.id !== "codxe"
@@ -111,15 +120,19 @@ try {
   }
   downloads = matches.sort((a, b) => a.name.localeCompare(b.name, "en"));
 } catch (error) {
-  console.error(`Could not load ${game} ${kind} downloads`, error);
+  console.error(`Could not load ${gameName} ${kind} downloads`, error);
 }
 ---
 
 {downloads === undefined ? (
-  <p>Downloads are temporarily unavailable. Reload this page to try again.</p>
+  <p class="catalog-status">
+    Downloads are temporarily unavailable. Reload this page to try again.
+  </p>
 ) : downloads.length === 0 ? (
-  <p>
-    No {kind} downloads are available for {gameName} yet.
+  <p class="catalog-status">
+    {mapMode === "multiplayer"
+      ? "Multiplayer map downloads will appear here as the team releases them."
+      : `No ${kind} downloads are available for ${gameName} yet.`}
   </p>
 ) : (
   <catalog-download-list>
@@ -169,19 +182,17 @@ try {
                 )}
               </p>
             </div>
-            <LinkButton
+            <a
+              class="download-button"
               href={item.downloadUrl}
-              icon="download"
-              iconPlacement="start"
-              variant="secondary"
               aria-label={`Download ${item.name} r${item.revision} ZIP`}
             >
-              ZIP ·{" "}
+              Download ZIP ·{" "}
               {(item.downloadBytes / 1_000_000).toLocaleString("en", {
                 maximumFractionDigits: 1,
               })}{" "}
               MB
-            </LinkButton>
+            </a>
           </div>
         </li>
       ))}
@@ -221,6 +232,13 @@ try {
 <style>
   catalog-download-list {
     display: block;
+  }
+  .catalog-status {
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.4rem;
+    background: var(--sl-color-bg-sidebar);
+    color: var(--sl-color-gray-2);
   }
   .filter:not([hidden]) {
     display: flex;
@@ -262,5 +280,18 @@ try {
     font-size: var(--sl-text-sm);
 
     margin: 0.2rem 0 0;
+  }
+  .download-button {
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 0.35rem;
+    color: var(--sl-color-white);
+    font-size: 0.875rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+  .download-button:hover {
+    background: var(--sl-color-accent-low);
+    border-color: var(--sl-color-accent);
   }
 </style>

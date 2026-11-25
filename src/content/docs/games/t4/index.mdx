@@ -1,0 +1,66 @@
+---
+title: "Call of Duty: World at War"
+description: Find custom multiplayer maps, Zombies maps and Bot Warfare for World at War on Xbox 360 and Xenia.
+shareImage:
+  path: /og/t4-fastfiles-zombie-maps.webp
+  alt: A custom Zombies map running in World at War through CoD Xe
+---
+
+import { Image } from "astro:assets";
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+import extraSettings from "../../../../assets/t4_settings/extra-settings.webp";
+import sideBySide from "../../../../assets/t4_settings/split-screen-side-by-side.webp";
+import topBottom from "../../../../assets/t4_settings/split-screen-top-bottom.webp";
+
+Use a USA / Europe copy of World at War with **TU7**. Follow the [CoD Xe setup guide](/setup/) for your platform, then choose what you want to play.
+
+## Maps
+
+<CardGrid>
+  <LinkCard
+    title="Multiplayer maps"
+    href="/games/t4/maps/"
+    description="Find team ports for System Link and private matches."
+  />
+  <LinkCard
+    title="Zombies maps"
+    href="/games/t4/zombies/"
+    description="Download team-ported maps for solo and co-op play."
+  />
+</CardGrid>
+
+## Mods
+
+<LinkCard
+  title="Bot Warfare"
+  href="/games/t4/bot-warfare/"
+  description="Add AI opponents to World at War multiplayer."
+/>
+
+## Single-player settings
+
+In Campaign or Zombies, pause the game and open **Options** > **Extra Settings**.
+
+- **Field of View** adjusts how much of the scene you can see.
+- **Split-screen Layout** switches between **Side by Side** and **Top / Bottom** during a split-screen match.
+
+<Image
+  src={extraSettings}
+  alt="World at War Extra Settings menu with the Field of View slider and Split-screen Layout set to Side by Side"
+/>
+
+<details>
+<summary>Compare split-screen layouts</summary>
+
+<CardGrid>
+  <figure>
+    <Image src={sideBySide} alt="Two player views arranged left and right" />
+    <figcaption>Side by Side (default)</figcaption>
+  </figure>
+  <figure>
+    <Image src={topBottom} alt="Two player views stacked one above the other" />
+    <figcaption>Top / Bottom</figcaption>
+  </figure>
+</CardGrid>
+
+</details>

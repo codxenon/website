@@ -1,0 +1,44 @@
+---
+title: "Install Title Updates on Xbox 360"
+description: Install a CoD Xe-compatible title update on Xbox 360 hardware.
+---
+
+import { LinkCard } from "@astrojs/starlight/components";
+
+Find the update required by your game. The CoD Xe ZIP includes the updates in its `title-updates` folder.
+
+<LinkCard
+  title="Supported games and title updates"
+  href="/help/compatibility/"
+  description="Choose and download the title update required by your game."
+/>
+
+## Copy the title update
+
+Do not rename the downloaded title update file. Its filename determines where
+it must be installed. The uppercase and lowercase placement rules are
+documented in the
+[ConsoleMods Xbox 360 Title Updates guide](https://consolemods.org/wiki/Xbox_360:Title_Updates).
+
+### Uppercase TU files
+
+Copy files beginning with uppercase `TU_` to `Hdd1:\Cache`.
+
+```text
+Hdd1:\Cache\<title update file>
+```
+
+### Lowercase tu files
+
+Copy files beginning with lowercase `tu` to the game's title update content
+folder. Use the Title ID from the compatibility table.
+
+```text
+Hdd1:\Content\0000000000000000\<Title ID>\000B0000\<title update file>
+```
+
+After copying the file, reboot the console before starting the game.
+
+## Next Step
+
+Return to the game or mod guide you were following.

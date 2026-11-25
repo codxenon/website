@@ -1,0 +1,76 @@
+---
+import SidebarSublist from "@astrojs/starlight/components/SidebarSublist.astro";
+import MobileMenuFooter from "virtual:starlight/components/MobileMenuFooter";
+
+const { sidebar } = Astro.locals.starlightRoute;
+const sections = sidebar.flatMap((entry) => {
+  if (entry.type !== "group") return [];
+  const link = entry.entries.find((item) => item.type === "link");
+  return link
+    ? [{ label: entry.label, href: link.href, pages: entry.entries }]
+    : [];
+});
+const active = sections.find(({ pages }) =>
+  pages.some((page) => page.type === "link" && page.isCurrent),
+);
+---
+
+<nav aria-label="Guide sections" class="sections">
+  <ul>
+    {sections.map(({ label, href }) => (
+      <li>
+        <a
+          href={href}
+          aria-current={label === active?.label ? "location" : undefined}
+        >
+          {label}
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>
+{active && (
+  <nav aria-label={`${active.label} pages`} class="section-pages">
+    <SidebarSublist sublist={active.pages} nested={true} />
+  </nav>
+)}
+<div class="md:sl-hidden">
+  <MobileMenuFooter />
+</div>
+
+<style>
+  .sections {
+    padding: 0.35rem;
+    border-radius: 0.6rem;
+    border: 1px solid var(--sl-color-gray-5);
+    background: var(--sl-color-black);
+  }
+
+  .sections ul {
+    list-style: none;
+    padding: 0;
+  }
+  .sections a {
+    display: block;
+    padding: 0.45rem 0.7rem;
+    border-radius: 0.35rem;
+    color: var(--sl-color-gray-2);
+    font-size: 0.9375rem;
+    font-weight: 650;
+    text-decoration: none;
+  }
+  .sections a:hover {
+    color: var(--sl-color-white);
+  }
+  .sections a[aria-current] {
+    color: var(--sl-color-accent-high);
+    background: var(--sl-color-accent-low);
+  }
+
+  .section-pages {
+    padding-inline: 0.35rem;
+  }
+  .section-pages :global(li + li) {
+    margin-top: 0.2rem;
+  }
+</style>

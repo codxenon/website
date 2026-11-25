@@ -1,33 +1,21 @@
 ---
 title: CoD Xenon
-description: Custom Call of Duty maps, mods and installation guides for Xbox 360 and Xenia.
+description: Custom Call of Duty maps and mods for Xbox 360 and Xenia. Install the CoD Xe client or explore the team's curated downloads.
 template: splash
+editUrl: false
+prev: false
+next: false
+head:
+  - tag: title
+    content: CoD Xenon
+  - tag: meta
+    attrs:
+      property: og:type
+      content: website
 hero:
-  tagline: Custom maps and mods for Call of Duty on Xbox 360 and Xenia.
-  image:
-    html: '<img class="cod-cover" src="/og/iw3-fastfiles-mp_firingrange.webp" alt="" fetchpriority="high" />'
-  actions:
-    - text: Explore Call of Duty 4
-      link: /games/iw3/
-      icon: right-arrow
-    - text: Get started
-      link: /getting-started/
-      variant: secondary
+  title: Custom maps & mods for Call of Duty
 ---
 
-import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+import TeamLibrary from "../../components/TeamLibrary.astro";
 
-## Maps and mods
-
-<CardGrid>
-  <LinkCard
-    title="Call of Duty 4 maps"
-    href="/games/iw3/maps/"
-    description="Download individual multiplayer maps for System Link and private matches."
-  />
-  <LinkCard
-    title="Star Wars: Galactic Warfare"
-    href="/guides/iw3/galactic-warfare/"
-    description="A total conversion with eight maps, new factions and Bot Warfare."
-  />
-</CardGrid>
+<TeamLibrary />

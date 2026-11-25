@@ -1,77 +1,54 @@
 ---
 title: "Call of Duty 4 map downloads"
 description: Download and install Call of Duty 4 multiplayer maps on Xbox 360 or Xenia.
-head:
-  - tag: meta
-    attrs:
-      property: og:image
-      content: https://codxenon.dev/og/iw3-fastfiles-mp_firingrange.webp
-  - tag: meta
-    attrs:
-      property: og:image:type
-      content: image/webp
-  - tag: meta
-    attrs:
-      property: og:image:width
-      content: "2560"
-  - tag: meta
-    attrs:
-      property: og:image:height
-      content: "1440"
-  - tag: meta
-    attrs:
-      property: og:image:alt
-      content: The mp_firingrange custom map running in Call of Duty 4 through CoD Xe
-  - tag: meta
-    attrs:
-      name: twitter:card
-      content: summary_large_image
-  - tag: meta
-    attrs:
-      name: twitter:image
-      content: https://codxenon.dev/og/iw3-fastfiles-mp_firingrange.webp
-  - tag: meta
-    attrs:
-      name: twitter:image:alt
-      content: The mp_firingrange custom map running in Call of Duty 4 through CoD Xe
+shareImage:
+  path: /og/iw3-fastfiles-mp_firingrange.webp
+  alt: Firing Range running in Call of Duty 4 through CoD Xe
+  width: 2560
+  height: 1440
 ---
 
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
 import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
 
-Choose a multiplayer map to download its ZIP for Xbox 360 or Xenia. Install Call of Duty 4 **TU4** and the [current CoD Xe client](/getting-started/) before [installing a map](#install-a-map-manually).
+Download individual multiplayer maps ported for Xbox 360 and Xenia. You’ll need Call of Duty 4 **TU4** and the [current CoD Xe client](/setup/).
+
+[Jump to map downloads](#map-downloads)
+
+## Install a map
+
+Extract the ZIP into your [Call of Duty 4 content folder](/setup/#game-content-folders). The map goes inside `usermaps/`. For example, Rust goes in `usermaps/mp_mw2_rust/`.
+
+If you’re updating a map, move its previous folder out of `usermaps/` before extracting the new ZIP.
+
+## Use Custom Maps
+
+When setting up a System Link or private match, open **Choose Map**, select **Custom Maps**, then choose the map you installed. The browser shows each map’s display title when the package includes one.
+
+<details>
+<summary>Show the Custom Maps browser</summary>
+
+![Middle East 1.1 highlighted in Custom Maps, with its preview, author and revision](../../../../assets/iw3_fastfiles/custom-maps-list.webp)
+
+</details>
+
+## Map downloads
 
 <CatalogDownloads game="iw3" server:defer>
   <p slot="fallback">Loading map downloads…</p>
 </CatalogDownloads>
 
-The eight Star Wars maps are bundled with [Galactic Warfare](/guides/iw3/galactic-warfare/).
+## Related mods
 
-## Install a map manually
-
-Extract your map ZIP into the game content folder for your platform.
-
-| Platform | Game content folder                                                   |
-| -------- | --------------------------------------------------------------------- |
-| Xbox 360 | `_codxe\games\iw3\` on the HDD or USB drive where CoD Xe is installed |
-| Xenia    | `plugins\415607E6\_codxe\` in your Xenia storage directory            |
-
-The ZIP includes `usermaps` and the map folder inside it. For example, Rust extracts to `usermaps/mp_mw2_rust/`. For a manual update, move the previous copy of that map folder aside before extracting the new ZIP.
-
-## Use Custom Maps
-
-CoD Xe reads the game’s `usermaps` folder when populating the map picker. The
-**Custom Maps** list updates when map folders are added or removed.
-
-1. When choosing a map for a System Link or private match, select
-   **Custom Maps**.
-
-![Choose Map menu with Custom Maps selected](../../../../assets/iw3_fastfiles/custom-maps-menu.webp)
-
-2. Select a map from the scrollable list.
-
-![Scrollable Custom Maps list](../../../../assets/iw3_fastfiles/custom-maps-list.webp)
-
-## Next Step
-
-Install [IW3 Bot Warfare](/guides/iw3/bot-warfare/) to add bots to Call of Duty
-4 multiplayer.
+<CardGrid>
+  <LinkCard
+    title="Star Wars: Galactic Warfare"
+    href="/games/iw3/galactic-warfare/"
+    description="Download the total conversion and its eight Star Wars maps in one ZIP."
+  />
+  <LinkCard
+    title="Bot Warfare"
+    href="/games/iw3/bot-warfare/"
+    description="Add AI opponents to multiplayer matches."
+  />
+</CardGrid>

@@ -1,0 +1,38 @@
+---
+title: Get started
+description: Install CoD Xe on Xbox 360 or Xenia and play using your existing game files.
+prev: false
+next: false
+---
+
+import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+
+CoD Xe runs on Xbox 360 consoles that can load unsigned code and on Xenia Canary for Windows. Use your own copy of a [supported game](/help/compatibility/) with its required title update.
+
+Your game can stay in its current format. **Games on Demand (GOD) works on both platforms**, alongside extracted game folders and Xbox 360 discs. Xenia can also open supported disc images directly.
+
+## Choose your platform
+
+<CardGrid>
+  <LinkCard
+    title="Xbox 360 setup"
+    href="/setup/xbox-360/"
+    description="Download CoD Xe, set up DashLaunch and install your title update."
+  />
+  <LinkCard
+    title="Xenia setup"
+    href="/setup/xenia/"
+    description="Download CoD Xe, enable plugins in Canary and install your title update."
+  />
+</CardGrid>
+
+[How to launch your game format](/setup/game-formats/)
+
+## Game content folders
+
+Use the same map and mod ZIPs on both platforms. Open the folder CoD Xe uses for the game, then follow the package’s install steps.
+
+| Game           | Xbox 360, under `_codxe` at the drive root | Xenia, under the emulator’s storage folder |
+| -------------- | ------------------------------------------ | ------------------------------------------ |
+| Call of Duty 4 | `games/iw3/`                               | `plugins/415607E6/_codxe/`                 |
+| World at War   | `games/t4/`                                | `plugins/4156081C/_codxe/`                 |

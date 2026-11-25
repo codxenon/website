@@ -1,0 +1,178 @@
+---
+import DefaultHero from "@astrojs/starlight/components/Hero.astro";
+import { LinkButton } from "@astrojs/starlight/components";
+
+const isHome = Astro.url.pathname === "/";
+---
+
+{isHome ? (
+  <section class="landing-hero">
+    <img
+      src="/og/iw3-fastfiles-mp_firingrange.webp"
+      alt=""
+      width="2560"
+      height="1440"
+      fetchpriority="high"
+    />
+    <div class="intro">
+      <p class="platforms">Xbox 360 &amp; Xenia</p>
+      <h1 id="_top" data-page-title>
+        Custom maps &amp; mods
+        <br class="hero-break" /> for Call of Duty
+      </h1>
+      <p class="summary">
+        Set up the CoD Xe client and play maps and mods ported by the CoD Xenon
+        team.
+      </p>
+      <div class="actions">
+        <LinkButton href="/setup/">Install CoD Xe</LinkButton>
+        <LinkButton href="#library" variant="secondary">
+          Browse maps &amp; mods
+        </LinkButton>
+      </div>
+    </div>
+    <p class="image-credit">
+      Firing Range <span>Call of Duty 4</span>
+    </p>
+  </section>
+) : (
+  <DefaultHero />
+)}
+
+<style>
+  .landing-hero {
+    isolation: isolate;
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-height: clamp(29rem, 48vw, 37rem);
+    padding: clamp(2rem, 5.5vw, 5.5rem);
+    overflow: hidden;
+    border-radius: 0.85rem;
+    background: #171a13;
+    color: #fff;
+  }
+
+  .landing-hero img,
+  .landing-hero::before {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+  }
+
+  .landing-hero img {
+    z-index: -2;
+    object-fit: cover;
+    object-position: 60% center;
+  }
+
+  .landing-hero::before {
+    content: "";
+    background:
+      linear-gradient(0deg, #10150ce0, transparent 35%),
+      linear-gradient(
+        90deg,
+        #10150cfa 0%,
+        #10150ce8 28%,
+        #10150c99 53%,
+        #10150c10 100%
+      );
+  }
+
+  .platforms {
+    color: #d8f7a1;
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  h1 {
+    margin: 1.1rem 0;
+    max-width: 45rem;
+    font-size: clamp(2.55rem, 6.1vw, 5rem);
+    font-weight: 780;
+    letter-spacing: -0.065em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+
+  .summary {
+    max-width: 31rem;
+    color: #e2e6da;
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    line-height: 1.55;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1.65rem;
+  }
+  .actions :global(a) {
+    border-radius: 0.35rem;
+    font-weight: 700;
+    padding: 0.6rem 1.05rem;
+  }
+  .actions :global(.primary) {
+    background: #d1f28f;
+    border-color: #d1f28f;
+    color: #19200d;
+  }
+  .actions :global(.primary:hover) {
+    background: #e6fbb9;
+    border-color: #e6fbb9;
+  }
+  .actions :global(.secondary) {
+    background: #151a13e6;
+    border-color: #a0aa92;
+    color: #fff;
+  }
+  .actions :global(.secondary:hover) {
+    background: #2d3724;
+    color: #fff;
+  }
+  .actions :global(a:focus-visible) {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+  }
+
+  .image-credit {
+    position: absolute;
+    inset: auto 1.5rem 1.15rem auto;
+    text-align: right;
+    font-size: 0.875rem;
+    font-weight: 650;
+  }
+
+  .image-credit span {
+    display: block;
+    color: #d7dbcf;
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+  @media (max-width: 48rem) {
+    .landing-hero::before {
+      background: linear-gradient(
+        0deg,
+        #10150cfb 4%,
+        #10150cec 51%,
+        #10150c4f 100%
+      );
+    }
+    .landing-hero {
+      align-items: end;
+      padding: 6rem clamp(1.25rem, 5vw, 2rem) 1.7rem;
+    }
+    .image-credit {
+      display: none;
+    }
+    .hero-break {
+      display: none;
+    }
+    h1 {
+      text-wrap: initial;
+    }
+  }
+</style>

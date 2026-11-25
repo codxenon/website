@@ -1,0 +1,42 @@
+---
+title: Xenia setup
+description: Install CoD Xe on Xenia Canary or Canary Netplay for Windows.
+prev: false
+next: false
+---
+
+import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
+
+Use [Xenia Canary or Canary Netplay](/setup/xenia/emulator/) on Windows. For System Link, use Canary Netplay. Run Xenia once to create its configuration, then close it.
+
+## Download CoD Xe
+
+<CatalogDownloads platform="xenia" server:defer>
+  <p slot="fallback">Loading the Xenia client…</p>
+</CatalogDownloads>
+
+## Set up the plugin
+
+1. Extract the client ZIP. Copy its `plugins` and `patches` folders into your Xenia storage folder. In a portable setup, this is the folder containing the emulator. Your Xenia log lists the path as `Storage root`.
+2. With Xenia closed, open its [configuration file](/setup/xenia/emulator/#configure-xenia-for-cod-xe) and set both values to `true`:
+
+   ```toml
+   allow_plugins = true
+   allow_game_relative_writes = true
+   ```
+
+3. Open Xenia and choose **Content → Install Content**. Select your game’s [required title update](/help/compatibility/) from the ZIP’s `title-updates` folder. [Title update help](/help/xenia-title-updates/).
+4. Start your game with **File → Open**. The [game formats guide](/setup/game-formats/) shows which file to select for a Games on Demand package, disc image or extracted folder.
+
+<details>
+<summary>Update or move an existing install</summary>
+
+Replace the CoD Xe `plugins.toml` files and merge in the new modules, patches and bundled zones. Keep your settings, stats, maps and mods. If your game data was in a game-local `_codxe` folder or under `_codxe\games\<game>\`, move it to `plugins\<title-id>\_codxe\` under your Xenia storage folder.
+
+</details>
+
+## Install maps and mods
+
+Find your [game’s content folder](/setup/#game-content-folders), then follow the map or mod’s install instructions.
+
+[Browse the maps and mods library](/games/) · [Get setup help](/help/)
