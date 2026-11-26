@@ -33,6 +33,9 @@ export default defineConfig({
     "/guides/iw3/galactic-warfare/": "/games/iw3/galactic-warfare/",
     "/guides/t4/fastfiles/": "/games/t4/zombies/",
     "/guides/t4/bot-warfare/": "/games/t4/bot-warfare/",
+    "/guides/iw4/fastfiles/": "/games/iw4/maps/",
+    "/games/iw4/fastfiles/": "/games/iw4/maps/",
+    "/guides/iw4/bot-warfare/": "/games/iw4/bot-warfare/",
     "/guides/iw5/bot-warfare/": "/games/iw5/bot-warfare/",
     "/games/t4/single-player-settings/": "/games/t4/#single-player-settings",
     "/get-help/": "/help/",
@@ -99,6 +102,13 @@ export default defineConfig({
           items: ["setup", "setup/xbox-360", "setup/xenia"],
         },
         {
+          label: "Call of Duty 2",
+          items: [
+            { label: "Overview", slug: "games/iw2" },
+            { label: "Bot Warfare", slug: "games/iw2/bot-warfare" },
+          ],
+        },
+        {
           label: "Call of Duty 4",
           items: [
             { label: "Overview", slug: "games/iw3" },
@@ -117,6 +127,14 @@ export default defineConfig({
             { label: "Multiplayer maps", slug: "games/t4/maps" },
             { label: "Zombies maps", slug: "games/t4/zombies" },
             { label: "Bot Warfare", slug: "games/t4/bot-warfare" },
+          ],
+        },
+        {
+          label: "Modern Warfare 2",
+          items: [
+            { label: "Overview", slug: "games/iw4" },
+            { label: "Multiplayer maps", slug: "games/iw4/maps" },
+            { label: "Bot Warfare", slug: "games/iw4/bot-warfare" },
           ],
         },
         {

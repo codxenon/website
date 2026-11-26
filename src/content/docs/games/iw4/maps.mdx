@@ -1,0 +1,33 @@
+---
+title: Modern Warfare 2 multiplayer maps
+description: Browse custom Modern Warfare 2 maps for TU6 and learn how to install them on Xbox 360 and Xenia.
+---
+
+import { LinkCard } from "@astrojs/starlight/components";
+import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
+
+Use the USA / Europe release of Modern Warfare 2 with **TU6** and [CoD Xe](/setup/) to play custom multiplayer maps.
+
+## Install a map
+
+Extract the map ZIP into your [Modern Warfare 2 content folder](/setup/#game-content-folders). Each map goes in its own folder under `usermaps/`.
+
+If you’re updating a map, move its previous folder out of `usermaps/` before extracting the new ZIP.
+
+## Use Custom Maps
+
+When setting up a System Link or private match, open the map selector, choose **Custom Maps**, and select the map you installed.
+
+## Map downloads
+
+<CatalogDownloads game="iw4" mapMode="multiplayer" server:defer>
+  <p slot="fallback">Checking for multiplayer map downloads…</p>
+</CatalogDownloads>
+
+## Related mods
+
+<LinkCard
+  title="Bot Warfare"
+  href="/games/iw4/bot-warfare/"
+  description="Add AI opponents to Modern Warfare 2 multiplayer matches."
+/>

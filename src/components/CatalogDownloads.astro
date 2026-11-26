@@ -1,9 +1,15 @@
 ---
 import MapIssueLink from "./MapIssueLink.astro";
 
+const gameNames = {
+  iw3: "Call of Duty 4",
+  t4: "World at War",
+  iw4: "Modern Warfare 2",
+} as const;
+
 type Props =
   | {
-      game: "iw3" | "t4";
+      game: keyof typeof gameNames;
       modId?: string;
       mapMode?: "multiplayer" | "zombies";
       platform?: never;
@@ -17,13 +23,11 @@ type Props =
 
 const { game, modId, mapMode, platform } = Astro.props;
 const kind = platform ? "client" : modId ? "mod" : "map";
-const gameName = platform
-  ? platform === "xbox360"
+const gameName = game
+  ? gameNames[game]
+  : platform === "xbox360"
     ? "Xbox 360"
-    : "Xenia"
-  : game === "iw3"
-    ? "Call of Duty 4"
-    : "World at War";
+    : "Xenia";
 
 interface Download {
   name: string;

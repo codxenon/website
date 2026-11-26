@@ -1,5 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import { Icon } from "@astrojs/starlight/components";
+import iw2BotWarfare from "../assets/iw2_botwarfare/bot-warfare-gameplay.webp";
+import iw4BotWarfare from "../assets/iw4_botwarfare/bot-warfare-logo.png";
 import iw5BotWarfare from "../assets/iw5_botwarfare/bot-warfare-logo.png";
 import nuketown from "../assets/splash/mp_4nuketown_ingame.webp";
 
@@ -12,33 +15,43 @@ const CollectionTitle = standalone ? "h2" : "h3";
 
 const collections = [
   {
+    slug: "iw2",
+    name: "Call of Duty 2",
+    type: "Multiplayer mods",
+    image: iw2BotWarfare,
+    description:
+      "Add bots to multiplayer and adjust their teams and difficulty.",
+  },
+  {
+    slug: "iw3",
     name: "Call of Duty 4",
     type: "Multiplayer maps & mods",
     image: nuketown,
     description:
       "Play custom multiplayer maps, add bots, or load Star Wars Mod: Galactic Warfare.",
-    links: [
-      { href: "/games/iw3/maps/", label: "Browse maps" },
-      { href: "/games/iw3/#mods", label: "Browse mods" },
-    ],
   },
   {
+    slug: "t4",
     name: "World at War",
     type: "Multiplayer & Zombies",
     image: "/og/t4-fastfiles-zombie-maps.webp",
     description:
       "Find custom multiplayer and Zombies maps, plus Bot Warfare for multiplayer.",
-    links: [
-      { href: "/games/t4/#maps", label: "Browse maps" },
-      { href: "/games/t4/bot-warfare/", label: "Bot Warfare" },
-    ],
   },
   {
+    slug: "iw4",
+    name: "Modern Warfare 2",
+    type: "Multiplayer maps & mods",
+    image: iw4BotWarfare,
+    description:
+      "Play Bot Warfare on TU6 and find custom maps as they’re released.",
+  },
+  {
+    slug: "iw5",
     name: "Modern Warfare 3",
     type: "Multiplayer mods",
     image: iw5BotWarfare,
     description: "Play System Link and private matches against AI opponents.",
-    links: [{ href: "/games/iw5/bot-warfare/", label: "Bot Warfare" }],
   },
 ];
 ---
@@ -56,8 +69,12 @@ const collections = [
     </p>
   </header>
   <div class="collections">
-    {collections.map(({ name, type, image, description, links }) => (
-      <article>
+    {collections.map(({ slug, name, type, image, description }) => (
+      <a
+        class="collection"
+        href={`/games/${slug}/`}
+        aria-labelledby={`library-${slug}-title`}
+      >
         <div class="collection-image">
           {typeof image === "string" ? (
             <img src={image} alt="" width="1200" height="630" loading="lazy" />
@@ -66,16 +83,19 @@ const collections = [
           )}
         </div>
         <div class="collection-copy">
-          <p class="collection-type">{type}</p>
-          <CollectionTitle class="collection-title">{name}</CollectionTitle>
+          <p class="collection-type">
+            {type}
+            <Icon name="right-arrow" class="collection-arrow" />
+          </p>
+          <CollectionTitle
+            class="collection-title"
+            id={`library-${slug}-title`}
+          >
+            {name}
+          </CollectionTitle>
           <p>{description}</p>
-          <div class="collection-links">
-            {links.map(({ href, label }) => (
-              <a href={href}>{label}</a>
-            ))}
-          </div>
         </div>
-      </article>
+      </a>
     ))}
   </div>
 </section>
@@ -119,13 +139,19 @@ const collections = [
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
   }
-  article {
-    display: flex;
-    flex-direction: column;
+  .collection {
     overflow: hidden;
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 0.65rem;
     background: var(--sl-color-bg-sidebar);
+    text-decoration: none;
+  }
+  .collection:hover {
+    border-color: var(--sl-color-accent);
+  }
+  .collection:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 2px;
   }
   .collection-image {
     aspect-ratio: 2.55;
@@ -138,15 +164,19 @@ const collections = [
     object-fit: cover;
   }
   .collection-copy {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
     padding: clamp(1rem, 3vw, 1.5rem);
   }
   .collection-type {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
     color: var(--sl-color-text-accent);
     font-size: 0.875rem;
     font-weight: 650;
+  }
+  .collection-arrow {
+    flex: none;
   }
   .collection-title {
     margin-block: 0.1rem 0.4rem;
@@ -160,28 +190,15 @@ const collections = [
   .resources p {
     color: var(--sl-color-gray-2);
   }
-  .collection-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem 1.25rem;
-    margin-top: auto;
-    padding-top: 1rem;
-  }
-  .collection-links a,
   .resources a {
     color: var(--sl-color-text-accent);
     font-weight: 650;
     text-underline-offset: 0.22em;
   }
-  a:hover {
+  .resources a:hover {
     color: var(--sl-color-white);
   }
 
-  @media (min-width: 70rem) {
-    .collections {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
   .resources {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));

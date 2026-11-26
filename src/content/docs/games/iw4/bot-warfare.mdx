@@ -1,170 +1,42 @@
 ---
-title: "Modern Warfare 2 Bot Warfare"
-description: Install Bot Warfare for Modern Warfare 2 on Xbox 360 or Xenia.
+title: Modern Warfare 2 Bot Warfare
+description: Install Bot Warfare to add AI opponents to Modern Warfare 2 multiplayer on TU6, for Xbox 360 and Xenia.
+shareImage:
+  file: ../../../../assets/iw4_botwarfare/bot-warfare-logo.png
+  alt: Bot Warfare artwork for Modern Warfare 2
 ---
 
-import {
-  Aside,
-  Badge,
-  CardGrid,
-  FileTree,
-  LinkButton,
-  LinkCard,
-} from "@astrojs/starlight/components";
+import { Badge, LinkButton } from "@astrojs/starlight/components";
 
-Bot Warfare adds playable AI bots to Call of Duty: Modern Warfare 2 multiplayer.
+![Bot Warfare artwork for Modern Warfare 2](../../../../assets/iw4_botwarfare/bot-warfare-logo.png)
 
-It works in offline System Link matches and online Xbox Live private matches.
-Modern Warfare 2 saves multiplayer progression in offline System Link, so you
-can level up and build custom classes in a fully offline setup.
+Bot Warfare adds AI opponents to Modern Warfare 2 multiplayer. You’ll need the USA / Europe release with **TU6** and [CoD Xe](/setup/).
 
-The original mod was created by [INeedGames](https://ineedbots.github.io). This port runs through the CoD Xe plugin.
-
-## What You Need
-
-- A **genuine** copy of Call of Duty: Modern Warfare 2
-- The Call of Duty: Modern Warfare 2 title update used by this guide: **TU6**
-
-<Aside type="caution" title="Supported region">
-  Use the **USA / Europe** region of Call of Duty: Modern Warfare 2. Other
-  regions are not supported.
-</Aside>
-
-<Aside type="caution" title="Supported title update">
-  IW4 Bot Warfare currently requires **TU6**. Other title updates are not
-  supported by this guide.
-</Aside>
-
-## Before You Begin
-
-Install CoD Xe before continuing with the title update and Bot Warfare installation.
-
-<CardGrid>
-  <LinkCard
-    title="Install Modern Warfare 2 TU6"
-    href="/help/compatibility/"
-    description="Download TU6 and install it for your platform."
-  />
-  <LinkCard
-    title="Xbox 360"
-    href="/setup/xbox-360/"
-    description="Install CoD Xe on an Xbox 360."
-  />
-  <LinkCard
-    title="Xenia"
-    href="/setup/xenia/"
-    description="Install CoD Xe on Xenia Canary."
-  />
-</CardGrid>
-
-## Install Bot Warfare
-
-Download the latest IW4 Bot Warfare release:
+## Download and install
 
 <LinkButton
   href="https://github.com/codxenon/iw4-bot-warfare-xenon/releases/download/v2.4.0-xenon/iw4bw-2.4.0-xenon.zip"
-  download
   icon="download"
 >
-  Download **IW4 Bot Warfare**
+  Download Bot Warfare ZIP
 </LinkButton>
 
-Extract the contents of the `.zip` into your Call of Duty: Modern Warfare 2
-game folder.
+Open `_codxe/mods/` inside the ZIP. Copy the complete `bot_warfare` folder into `mods/` in your [Modern Warfare 2 content folder](/setup/#game-content-folders).
 
-When installed correctly, your folder should look like this:
+## Load Bot Warfare
 
-<FileTree>
+1. Launch Modern Warfare 2 multiplayer and open **Mods** from the main menu.
+2. Select **Bot Warfare** (or `bot_warfare`) to load it.
+3. Start a System Link or private match. Press <Badge text="D-Pad Down" /> to open the Bot Warfare menu. Use the movement controls to browse options and jump to select. Press <Badge text="D-Pad Down" /> again to close it.
 
-- `Call of Duty - Modern Warfare 2`
-  - \_codxe
-    - codxe.json
-    - mods
-      - bot_warfare
-        - maps/
-        - scriptdata/
-        - scripts/
-  - default_mp.xex
-  - ...
+![The Bot Warfare menu open during a Modern Warfare 2 multiplayer match](../../../../assets/iw4_botwarfare/iw4_botwarfare_ingame_menu.webp)
 
-</FileTree>
+Start with a few bots. If the match slows down, lower **Bot awareness quality** or reduce the bot count.
 
-## Using Bot Warfare
+To rename bots, edit `mods/bot_warfare/scriptdata/botnames.txt` in your Modern Warfare 2 content folder. Put one name on each line.
 
-Start Call of Duty: Modern Warfare 2 multiplayer.
+## Unlock offline loadouts
 
-If the mod loaded, you will see the `Mod: bot_warfare` text in the top left.
+From the multiplayer menu, enter `unlockstats` in the CoD Xe console. Check **Barracks** to confirm level 70, then use **Create a Class** to customise your offline loadouts.
 
-![Bot Warfare active mod](../../../../assets/iw4_botwarfare/iw4_botwarfare_active_mod.webp)
-
-### In-Game Menu
-
-In a System Link or private match, press <Badge text="D-Pad Down" /> to open the Bot
-Warfare menu. Use it to add bots, change bot difficulty, and adjust settings.
-
-![Bot Warfare ingame menu](../../../../assets/iw4_botwarfare/iw4_botwarfare_ingame_menu.webp)
-
-Navigate the menu with movement controls, then select options with jump. Press
-the menu button again to close it.
-
-### Bot Limits and Performance
-
-Use the **Bot awareness quality** setting in the Bot Warfare menu to balance
-performance and responsiveness. Lower settings use less performance, but bots
-take longer to notice enemies. **Medium** is the default starting point.
-
-<Aside type="caution" title="Xbox 360 performance">
-  There is no fixed bot limit. Start with a small number of bots and add more
-  gradually. If the match slows down, lower Bot awareness quality or reduce the
-  bot count.
-</Aside>
-
-Xenia can handle more bots than Xbox 360, depending on the map and your PC.
-Start lower and increase the count if performance stays stable.
-
-### Rename Bots
-
-Bot names are stored in `botnames.txt`.
-
-Open the file and add one bot name per line:
-
-<FileTree>
-
-- `Call of Duty - Modern Warfare 2`
-  - \_codxe
-    - mods
-      - bot_warfare
-        - scriptdata
-          - **botnames.txt**
-  - ...
-
-</FileTree>
-
-### Unlock Stats
-
-IW4 can save multiplayer progression in Splitscreen and System Link. If you
-only want to build custom classes for offline matches, use the console command
-`unlockstats` instead of manually leveling the profile.
-
-Open the CoD Xe in-game console, type:
-
-```text
-unlockstats
-```
-
-Then submit the command.
-
-![unlockstats command](../../../../assets/iw4_botwarfare/iw4_unlockstats_command.webp)
-
-After the command runs, check Barracks. The profile should be level 70, with
-create-a-class weapons and options available for offline play.
-
-![unlockstats result in Barracks](../../../../assets/iw4_botwarfare/iw4_barracks_unlockstats_result.webp)
-
-## Source Code
-
-<LinkCard
-  title="IW4 Bot Warfare Xenon port"
-  href="https://github.com/codxenon/iw4-bot-warfare-xenon"
-  description="View the Xenon port source code on GitHub."
-/>
+Original mod by [INeedGames](https://github.com/ineedbots/iw4_bot_warfare). [Modern Warfare 2 Xenon port source](https://github.com/codxenon/iw4-bot-warfare-xenon).

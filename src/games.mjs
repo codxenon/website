@@ -1,5 +1,5 @@
 // Games with a curated map or mod collection in the preview.
-export const publishedGames = ["iw3", "t4", "iw5"];
+export const publishedGames = ["iw2", "iw3", "t4", "iw4", "iw5"];
 
 export const games = [
   {
@@ -86,7 +86,7 @@ export const games = [
       },
       {
         label: "TU9",
-        modes: "SP + MP",
+        modes: "SP",
         url: "https://github.com/codxenon/xbox360-title-updates/raw/refs/heads/main/games/Call%20of%20Duty%20-%20Modern%20Warfare%202%20%28USA%2C%20Europe%29/TU9/TU_10LC20N_0000018000000.000000000028A",
       },
     ],
