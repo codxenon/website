@@ -1,0 +1,40 @@
+---
+type Props = { game: string; name: string } & (
+  { revision: number; bundle?: never } | { bundle: string; revision?: never }
+);
+
+const { game, name, revision, bundle } = Astro.props;
+const packageDetails = bundle
+  ? [`- **Bundle** ${bundle}`, "- **Bundle revision**"]
+  : [`- **Map revision** r${revision}`];
+
+const issue = new URL("https://github.com/codxenon/content-issues/issues/new");
+issue.searchParams.set("title", `[${game}] ${name}`);
+issue.searchParams.set(
+  "body",
+  [
+    "### Map details",
+    "",
+    `- **Game** ${game}`,
+    `- **Map** ${name}`,
+    ...packageDetails,
+    "- **Platform** <!-- Xbox 360 or Xenia -->",
+    "- **Game mode**",
+    "- **CoD Xe revision**",
+    "",
+    "### Steps to reproduce",
+    "",
+    "1. ",
+    "",
+    "### What happened?",
+    "",
+    "### What did you expect?",
+    "",
+    "### Screenshots or logs",
+  ].join("\n"),
+);
+---
+
+<a href={issue.href} aria-label={`Report an issue with ${name}`}>
+  Report an issue
+</a>

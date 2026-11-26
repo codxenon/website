@@ -1,4 +1,6 @@
 ---
+import MapIssueLink from "./MapIssueLink.astro";
+
 type Props =
   | {
       game: "iw3" | "t4";
@@ -122,6 +124,9 @@ try {
 } catch (error) {
   console.error(`Could not load ${gameName} ${kind} downloads`, error);
 }
+
+const showMapMode =
+  kind !== "map" || new Set(downloads?.map((item) => item.mapMode)).size > 1;
 ---
 
 {downloads === undefined ? (
@@ -137,13 +142,21 @@ try {
 ) : (
   <catalog-download-list>
     {kind === "map" && downloads.length > 1 && (
-      <label class="filter" hidden>
-        Find a map <input type="search" placeholder="Name or author" />
+      <div class="filter" hidden>
+        <input
+          type="search"
+          aria-label="Find a map"
+          placeholder="Search by name or author"
+        />
         <span role="status">{downloads.length} maps</span>
-      </label>
+      </div>
     )}
     <ul
-      class="catalog-downloads not-content"
+      class:list={[
+        "catalog-downloads",
+        "not-content",
+        { "map-downloads": kind === "map" },
+      ]}
       aria-label={`${gameName} ${kind} downloads`}
     >
       {downloads.map((item) => (
@@ -161,39 +174,52 @@ try {
                 {[
                   platform && gameName,
                   `r${item.revision}`,
-                  item.mapMode === "zombies"
-                    ? "Zombies"
-                    : item.mapMode === "multiplayer"
-                      ? "Multiplayer"
-                      : undefined,
+                  showMapMode &&
+                    (item.mapMode === "zombies"
+                      ? "Zombies"
+                      : item.mapMode === "multiplayer"
+                        ? "Multiplayer"
+                        : undefined),
                   item.author && `By ${item.author}`,
                 ]
                   .filter(Boolean)
                   .join(" · ")}
-                {item.sourceUrl && (
-                  <>
-                    {" · "}
+              </p>
+            </div>
+            <div class="download-actions">
+              <a
+                class="download-button"
+                href={item.downloadUrl}
+                aria-label={`Download ${item.name} r${item.revision} ZIP${platform ? ` for ${gameName}` : ""}`}
+              >
+                <span>Download ZIP{kind === "map" ? "" : " ·"}</span>
+                <span class="download-size">
+                  {(item.downloadBytes / 1_000_000).toLocaleString("en", {
+                    maximumFractionDigits: 1,
+                  })}{" "}
+                  MB
+                </span>
+              </a>
+              {(item.sourceUrl || kind === "map") && (
+                <div class="secondary-links">
+                  {item.sourceUrl && (
                     <a
                       href={item.sourceUrl}
                       aria-label={`Original ${kind} page for ${item.name}`}
                     >
-                      Original {kind} page
+                      Original {kind}
                     </a>
-                  </>
-                )}
-              </p>
+                  )}
+                  {kind === "map" && (
+                    <MapIssueLink
+                      game={gameName}
+                      name={item.name}
+                      revision={item.revision}
+                    />
+                  )}
+                </div>
+              )}
             </div>
-            <a
-              class="download-button"
-              href={item.downloadUrl}
-              aria-label={`Download ${item.name} r${item.revision} ZIP${platform ? ` for ${gameName}` : ""}`}
-            >
-              Download ZIP ·{" "}
-              {(item.downloadBytes / 1_000_000).toLocaleString("en", {
-                maximumFractionDigits: 1,
-              })}{" "}
-              MB
-            </a>
           </div>
         </li>
       ))}
@@ -204,7 +230,7 @@ try {
 <script>
   class CatalogDownloadList extends HTMLElement {
     connectedCallback() {
-      const filter = this.querySelector<HTMLLabelElement>(".filter");
+      const filter = this.querySelector<HTMLDivElement>(".filter");
       const input = filter?.querySelector("input");
       const status = filter?.querySelector("[role=status]");
       if (!filter || !input || !status) return;
@@ -244,14 +270,15 @@ try {
   .filter:not([hidden]) {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-    font-weight: 600;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
   }
   .filter input {
+    flex: 1;
     font: inherit;
     min-width: 0;
-    padding: 0.4rem 0.65rem;
+    max-width: 21rem;
+    padding: 0.45rem 0.75rem;
     color: var(--sl-color-white);
     background: var(--sl-color-black);
     border: 1px solid var(--sl-color-gray-4);
@@ -260,6 +287,7 @@ try {
   .filter span {
     font-size: var(--sl-text-sm);
     color: var(--sl-color-gray-2);
+    white-space: nowrap;
   }
   .catalog-downloads {
     padding: 0;
@@ -269,6 +297,12 @@ try {
     padding: 1rem 0;
     border-bottom: 1px solid var(--sl-color-gray-5);
   }
+  .map-downloads {
+    margin-block: 0.5rem 0;
+  }
+  .map-downloads > li {
+    padding-block: 0.85rem;
+  }
   .download-row {
     display: flex;
     flex-wrap: wrap;
@@ -276,13 +310,23 @@ try {
     gap: 0.5rem 1rem;
     align-items: center;
   }
+  .map-downloads .download-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 12.5rem;
+  }
   .metadata {
     color: var(--sl-color-gray-2);
     font-size: var(--sl-text-sm);
-
     margin: 0.2rem 0 0;
   }
+  .download-actions {
+    display: grid;
+    gap: 0.35rem;
+  }
   .download-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
     padding: 0.45rem 0.75rem;
     border: 1px solid var(--sl-color-gray-4);
     border-radius: 0.35rem;
@@ -291,8 +335,46 @@ try {
     font-weight: 650;
     text-decoration: none;
   }
+  .map-downloads .download-button {
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .map-downloads .download-size {
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-xs);
+    font-variant-numeric: tabular-nums;
+  }
   .download-button:hover {
     background: var(--sl-color-accent-low);
     border-color: var(--sl-color-accent);
+  }
+  .secondary-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 0.75rem;
+    justify-content: flex-end;
+    font-size: var(--sl-text-xs);
+  }
+  .secondary-links :global(a) {
+    color: var(--sl-color-gray-2);
+    text-decoration-color: var(--sl-color-gray-4);
+    text-underline-offset: 0.18em;
+  }
+  .secondary-links :global(a:hover) {
+    color: var(--sl-color-accent-high);
+    text-decoration-color: currentColor;
+  }
+
+  @media (max-width: 36rem) {
+    .map-downloads .download-row {
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: start;
+    }
+    .map-downloads .download-actions {
+      width: min(100%, 12.5rem);
+    }
+    .secondary-links {
+      justify-content: flex-start;
+    }
   }
 </style>
