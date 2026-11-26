@@ -6,6 +6,7 @@ next: false
 ---
 
 import { CardGrid, LinkCard } from "@astrojs/starlight/components";
+import { games } from "../../../games.mjs";
 
 CoD Xe runs on Xbox 360 consoles that can load unsigned code and on Xenia Canary for Windows. Use your own copy of a [supported game](/help/compatibility/) with its required title update.
 
@@ -30,10 +31,25 @@ CoD Xe stores its files separately, so you can leave your game files as they are
 
 Use the same map and mod ZIPs on both platforms. Open the folder CoD Xe uses for the game, then follow the package’s install steps.
 
-| Game             | Xbox 360, under `_codxe` at the drive root | Xenia, under the emulator’s storage folder |
-| ---------------- | ------------------------------------------ | ------------------------------------------ |
-| Call of Duty 2   | `games/iw2/`                               | `plugins/415607D1/_codxe/`                 |
-| Call of Duty 4   | `games/iw3/`                               | `plugins/415607E6/_codxe/`                 |
-| World at War     | `games/t4/`                                | `plugins/4156081C/_codxe/`                 |
-| Modern Warfare 2 | `games/iw4/`                               | `plugins/41560817/_codxe/`                 |
-| Modern Warfare 3 | `games/iw5/`                               | `plugins/415608CB/_codxe/`                 |
+<table>
+  <thead>
+    <tr>
+      <th scope="col">Game</th>
+      <th scope="col">Xbox 360, from the drive root</th>
+      <th scope="col">Xenia, under the emulator’s storage folder</th>
+    </tr>
+  </thead>
+  <tbody>
+    {games.map(({ id, title, titleId }) => (
+      <tr>
+        <th scope="row">{title}</th>
+        <td>
+          <code>{`_codxe/games/${id}/`}</code>
+        </td>
+        <td>
+          <code>{`plugins/${titleId}/_codxe/`}</code>
+        </td>
+      </tr>
+    ))}
+  </tbody>
+</table>

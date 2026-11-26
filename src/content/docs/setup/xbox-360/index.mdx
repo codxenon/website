@@ -5,6 +5,7 @@ prev: false
 next: false
 ---
 
+import { Aside } from "@astrojs/starlight/components";
 import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
 
 You’ll need an Xbox 360 that can load unsigned plugins and a copy of a [supported game](/help/compatibility/).
@@ -17,7 +18,14 @@ You’ll need an Xbox 360 that can load unsigned plugins and a copy of a [suppor
 
 ## Set up the plugin
 
-1. Extract the client ZIP on your computer. The entire `_codxe` folder must go at the **root of the Xbox 360 storage device** you’re using. On `Hdd1:`, the plugin path is `Hdd1:\_codxe\codxe.xex`.
+<Aside type="note" title="Install at the drive root">
+  The entire `_codxe` folder goes directly at the **top level of your Xbox 360 hard drive or USB drive**.
+
+In DashLaunch, use `Hdd:\_codxe\codxe.xex` for the hard drive or `Usb:\_codxe\codxe.xex` for a USB drive.
+
+</Aside>
+
+1. Extract the client ZIP on your computer and copy `_codxe` to the drive you’ll use.
 2. In DashLaunch, set a plugin slot to your copied `codxe.xex` and save the configuration. If you use another module loader, configure it to load `codxe.xex` at the dashboard.
 3. Find your game’s [required title update](/help/compatibility/) in the ZIP’s `title-updates` folder. Follow the [Xbox 360 title update guide](/help/xbox-360-title-updates/) to copy it to the right location.
 4. Restart the console. Look for **CoD Xe: Loaded** on the dashboard, then launch your game.
