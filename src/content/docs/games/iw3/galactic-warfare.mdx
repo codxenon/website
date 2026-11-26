@@ -1,9 +1,23 @@
 ---
 title: "Star Wars: Galactic Warfare"
 description: Play Galactic Warfare and its eight multiplayer maps in Call of Duty 4 on Xbox 360 or Xenia.
+shareImage:
+  file: ../../../../assets/iw3_galactic_warfare/galactic-warfare-banner.jpg
+  alt: Galactic Warfare Community Restoration Project artwork
 ---
 
+import { Image } from "astro:assets";
+import banner from "../../../../assets/iw3_galactic_warfare/galactic-warfare-banner.jpg";
 import CatalogDownloads from "../../../../components/CatalogDownloads.astro";
+import MapIssueLink from "../../../../components/MapIssueLink.astro";
+
+<Image
+  src={banner}
+  alt="Galactic Warfare Community Restoration Project artwork"
+  width={960}
+  layout="constrained"
+  priority
+/>
 
 Play as the Rebels or the Empire in Call of Duty 4 multiplayer. The Xbox 360 and Xenia port bundles Galactic Warfare, Bot Warfare, and eight maps in one ZIP.
 
@@ -27,7 +41,30 @@ Install Call of Duty 4 **TU4** and [CoD Xe](/setup/). Close the game before copy
 
 ## Included maps
 
-Anchorhead, Bestine, Bespin, Jundland, Jundland Dusk, Mos Eisley, Not a Cave, and Easybeat’s Rebellion. **Not a Cave** supports Deathmatch only and lacks bot waypoints.
+<ul>
+  {[
+    "Anchorhead",
+    "Bestine",
+    "Bespin",
+    "Jundland",
+    "Jundland Dusk",
+    "Mos Eisley",
+    "Not a Cave",
+    "Easybeat’s Rebellion",
+  ].map((name) => (
+    <li>
+      {name}
+      {" · "}
+      <MapIssueLink
+        game="Call of Duty 4"
+        name={name}
+        bundle="Star Wars: Galactic Warfare"
+      />
+    </li>
+  ))}
+</ul>
+
+**Not a Cave** supports Deathmatch only and lacks bot waypoints.
 
 ## Credits
 
